@@ -1,0 +1,8 @@
+{
+  "name": "Buzz N Beyond Innovations",
+  "description": "A modern, premium, highly animated one-page agency website for Buzz N Beyond Innovations featuring smooth scroll animations, interactive 3D particle stages, and horizontal service showcases.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
