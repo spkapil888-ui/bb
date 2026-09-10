@@ -12,6 +12,7 @@ import { DropCapsuleSection } from '@/components/DropCapsuleSection';
 import { LetsWorkAnimationSection } from '@/components/LetsWorkAnimationSection';
 import { ProcessSection } from '@/components/ProcessSection';
 import { WhyChooseUsSection } from '@/components/WhyChooseUsSection';
+import { PackagesSection } from '@/components/PackagesSection';
 import OurMissionSection from '@/components/sections/our-mission-section';
 import { Footer } from '@/components/Footer';
 import { ContactModal } from '@/components/ContactModal';
@@ -79,10 +80,13 @@ export default function Home() {
         {/* 10. Why Choose Us Section */}
         <WhyChooseUsSection />
 
-        {/* 11. Our Mission: Think Beyond, Build Beyond Section */}
+        {/* 11. Packages Section */}
+        <PackagesSection onSelectPackage={(pkg) => handleOpenContact(`Package: ${pkg}`)} />
+
+        {/* 12. Our Mission: Think Beyond, Build Beyond Section */}
         <OurMissionSection onGetStarted={() => handleOpenContact()} />
 
-        {/* 12. Footer */}
+        {/* 13. Footer */}
         <Footer
           onOpenContact={() => handleOpenContact()}
           onOpenLegal={(type) => setLegalModalType(type)}

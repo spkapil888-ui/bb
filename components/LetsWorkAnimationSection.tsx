@@ -18,25 +18,24 @@ export function LetsWorkAnimationSection() {
     const text = textRef.current;
     if (!section || !text) return;
 
-    const isMobile = window.innerWidth < 768;
-    const targetScale = isMobile ? 5.5 : 8;
-
     const ctx = gsap.context(() => {
+      const finalScale = window.innerWidth <= 768 ? 2.2 : 2.8;
+
       gsap.fromTo(
         text,
         {
-          scale: 0.25,
+          scale: 0.45,
           opacity: 1,
         },
         {
-          scale: targetScale,
+          scale: finalScale,
           opacity: 1,
           ease: 'none',
           scrollTrigger: {
             trigger: section,
             start: 'top top',
-            end: '+=1200',
-            scrub: true,
+            end: '+=700',
+            scrub: 0.8,
             pin: true,
             pinSpacing: true,
             anticipatePin: 1,

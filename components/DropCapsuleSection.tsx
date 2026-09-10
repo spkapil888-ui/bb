@@ -146,7 +146,7 @@ export function DropCapsuleSection() {
       const { Engine, World, Bodies, Body, Runner, Events } = Matter;
 
       techEngine = Engine.create({
-        gravity: { x: 0, y: 1.15, scale: 0.001 },
+        gravity: { x: 0, y: 1.05, scale: 0.001 },
       });
       const world = techEngine.world;
 
@@ -188,23 +188,27 @@ export function DropCapsuleSection() {
         const h = el.offsetHeight > 20 ? el.offsetHeight : defaultH;
 
         const columns = isMobile ? 3 : 5;
-        const colWidth = Math.max(100, (width - 120) / columns);
+        const colWidth = Math.max(120, (width - 120) / columns);
 
-        const x = 50 + (index % columns) * colWidth + Math.random() * 30 + w / 2;
-        const y = -80 - index * 75 - Math.random() * 50;
+        const startX = 80 + (index % columns) * colWidth + Math.random() * 35;
+        const startY = -180 - index * 85;
 
-        const body: CapsuleBody = Bodies.rectangle(x, y, w, h, {
+        const body: CapsuleBody = Bodies.rectangle(startX, startY, w, h, {
           chamfer: { radius: Math.min(w, h) / 2 },
-          restitution: 0.4,
-          friction: 0.65,
-          frictionAir: 0.02,
-          density: 0.002,
+          restitution: 0.38,
+          friction: 0.75,
+          frictionAir: 0.025,
+          density: 0.0025,
         });
 
-        const startAngle = el.classList.contains('tilt')
-          ? index % 2 === 0 ? 0.3 : -0.3
-          : index % 3 === 0 ? -0.35 : index % 4 === 0 ? 0.28 : 0;
+        Body.setVelocity(body, {
+          x: (Math.random() - 0.5) * 2,
+          y: 0,
+        });
 
+        Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.08);
+
+        const startAngle = index % 3 === 0 ? -0.35 : index % 4 === 0 ? 0.28 : 0;
         Body.setAngle(body, startAngle);
 
         body.el = el;
@@ -332,7 +336,7 @@ export function DropCapsuleSection() {
       techObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            if (entry.isIntersecting) {
+            if (entry.isIntersecting && !techInitialized) {
               initTechnologyCapsules();
               if (techObserver) {
                 techObserver.disconnect();
@@ -340,24 +344,19 @@ export function DropCapsuleSection() {
             }
           });
         },
-        { threshold: 0.05, rootMargin: '100px' }
+        { threshold: 0.25 }
       );
 
       techObserver.observe(techSection);
     }
 
-    // Safety fallback: ensure capsules initialize immediately in preview iframe
-    const fallbackTimer = setTimeout(() => {
-      if (!techInitialized) {
-        initTechnologyCapsules();
-      }
-    }, 300);
-
     const handleResize = () => {
       if (resizeTimer) clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        cleanupPhysics();
-        initTechnologyCapsules();
+        if (techInitialized) {
+          cleanupPhysics();
+          initTechnologyCapsules();
+        }
       }, 250);
     };
 
@@ -365,7 +364,6 @@ export function DropCapsuleSection() {
 
     return () => {
       if (techObserver) techObserver.disconnect();
-      if (fallbackTimer) clearTimeout(fallbackTimer);
       if (resizeTimer) clearTimeout(resizeTimer);
       window.removeEventListener('resize', handleResize);
       cleanupPhysics();
