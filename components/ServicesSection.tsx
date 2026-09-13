@@ -1,13 +1,8 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
-import { Sparkles, Layers, Cpu, TrendingUp, Palette } from 'lucide-react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import React from 'react';
+import { motion } from 'motion/react';
+import { Sparkles, Layers, Cpu, TrendingUp, Palette, ArrowRight } from 'lucide-react';
 
 interface ServicesSectionProps {
   onSelectService?: (serviceName: string) => void;
@@ -68,71 +63,71 @@ const services = [
 ];
 
 export function ServicesSection({ onSelectService }: ServicesSectionProps) {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const section = sectionRef.current;
-    const wrapper = wrapperRef.current;
-    const track = trackRef.current;
-
-    if (!section || !wrapper || !track) return;
-
-    const mm = gsap.matchMedia();
-
-    mm.add('(min-width: 992px)', () => {
-      const getScrollAmount = () => {
-        return track.scrollWidth - wrapper.clientWidth;
-      };
-
-      const tween = gsap.to(track, {
-        x: () => -getScrollAmount(),
-        ease: 'none',
-        force3D: true,
-        scrollTrigger: {
-          trigger: section,
-          start: 'top top',
-          end: () => `+=${getScrollAmount() + window.innerHeight * 0.8}`,
-          scrub: 0.8,
-          pin: true,
-          pinSpacing: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-
-      return () => {
-        tween.kill();
-      };
-    });
-
-    return () => {
-      mm.revert();
-    };
-  }, []);
+  // Exactly 4 cards duplicated once for seamless infinite loop
+  const duplicatedServices = [...services, ...services];
 
   return (
     <section
       id="services"
-      ref={sectionRef}
-      className="what-we-do-section select-none py-20 lg:py-0"
+      className="what-we-do-section select-none relative overflow-hidden py-24 sm:py-32"
     >
-      {/* Background static ambient purple glow (lightweight, zero scroll animation) */}
-      <div className="absolute top-1/4 left-10 w-[500px] h-[500px] bg-[#4D357F]/10 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-10 right-10 w-[600px] h-[600px] bg-[#4D357F]/12 rounded-full blur-3xl pointer-events-none -z-10" />
+      {/* 1. Night Sky Background Gradient */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: 'linear-gradient(180deg, #050814 0%, #080B14 50%, #050814 100%)',
+        }}
+      />
+
+      {/* 2. Night Sky Subtle Starry Dot Matrix */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-25"
+        style={{
+          backgroundImage:
+            'radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+      />
+
+      {/* 3. Subtle Purple & Green Ambient Cosmic Glow Motion */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-0">
+        <motion.div
+          animate={{
+            x: ['-5%', '10%', '-5%'],
+            y: ['-10%', '8%', '-10%'],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="absolute top-1/4 -left-20 w-[550px] h-[550px] rounded-full bg-[#4D357F]/24 blur-[130px]"
+        />
+        <motion.div
+          animate={{
+            x: ['5%', '-10%', '5%'],
+            y: ['10%', '-8%', '10%'],
+            scale: [1, 1.15, 1],
+          }}
+          transition={{
+            duration: 24,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="absolute bottom-10 -right-20 w-[550px] h-[550px] rounded-full bg-[#20542D]/22 blur-[140px]"
+        />
+      </div>
 
       {/* Header Area */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mb-10 lg:mb-14 relative z-10">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mb-12 sm:mb-16 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-[#4D357F]/40 text-[#FFFFFF] text-xs font-semibold uppercase tracking-wider mb-4 backdrop-blur-md">
               <Sparkles className="w-3.5 h-3.5 text-[#4D357F]" />
               Core Capabilities
             </div>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-[#FFFFFF]">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#FFFFFF]">
               What<span className="text-[#4D357F]">—</span>We Do
             </h2>
           </div>
@@ -143,28 +138,26 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
         </div>
       </div>
 
-      {/* Horizontal Carousel Track on Desktop / Vertical Stack on Mobile */}
-      <div
-        ref={wrapperRef}
-        className="what-we-do-wrapper relative z-10"
-      >
-        <div
-          ref={trackRef}
-          className="what-we-do-track"
-        >
-          {services.map((service) => {
+      {/* Infinite Smooth Carousel Track */}
+      <div className="what-we-do-wrapper relative z-10 w-full overflow-hidden">
+        {/* Subtle Edge Fade Masks for Smooth In/Out */}
+        <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-[#050814] to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-[#050814] to-transparent z-20 pointer-events-none" />
+
+        <div className="what-we-do-loop flex">
+          {duplicatedServices.map((service, index) => {
             const Icon = service.icon;
             return (
               <div
-                key={service.category}
+                key={`${service.category}-${index}`}
                 onClick={() => onSelectService?.(service.category)}
-                className="what-card group cursor-pointer"
+                className="what-card group cursor-pointer shrink-0"
               >
                 {/* Top Ambient Highlight */}
                 <div className="relative z-10">
                   {/* Icon & Status Dot */}
                   <div className="flex items-center justify-between mb-6">
-                    <div className="w-13 h-13 rounded-2xl bg-white/10 border border-[#4D357F]/40 flex items-center justify-center group-hover:scale-105 group-hover:bg-[#4D357F] group-hover:border-[#4D357F] transition-all duration-300">
+                    <div className="w-12 h-12 rounded-2xl bg-white/10 border border-[#4D357F]/40 flex items-center justify-center group-hover:scale-105 group-hover:bg-[#4D357F] group-hover:border-[#4D357F] transition-all duration-300">
                       <Icon className="w-6 h-6 text-[#FFFFFF]" />
                     </div>
 
@@ -193,6 +186,12 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
                       </li>
                     ))}
                   </ul>
+                </div>
+
+                {/* Bottom Action Hint */}
+                <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-white/50 group-hover:text-white transition-colors">
+                  <span>Explore Discipline</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1 text-[#4D357F] group-hover:text-[#20542D]" />
                 </div>
               </div>
             );

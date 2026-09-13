@@ -15,7 +15,7 @@ import {
 import { CharReveal } from '../CharReveal';
 
 interface WhyChooseUsCard {
-  number: string;
+  id: string;
   title: string;
   description: string;
   icon: React.ElementType;
@@ -24,42 +24,42 @@ interface WhyChooseUsCard {
 
 const cardsData: WhyChooseUsCard[] = [
   {
-    number: '01',
+    id: 'strategy',
     title: 'Strategy First',
     description: 'Start with clarity. Build with purpose.',
     icon: Compass,
     accent: 'purple',
   },
   {
-    number: '02',
+    id: 'creative',
     title: 'Creative Thinking',
     description: 'Ideas that make brands memorable.',
     icon: Lightbulb,
     accent: 'purple',
   },
   {
-    number: '03',
+    id: 'performance',
     title: 'Performance Driven',
     description: 'Creative backed by measurable results.',
     icon: TrendingUp,
     accent: 'green',
   },
   {
-    number: '04',
+    id: 'support',
     title: 'Complete Support',
     description: 'Everything digital. One connected strategy.',
     icon: Layers,
     accent: 'purple',
   },
   {
-    number: '05',
+    id: 'data',
     title: 'Data Led',
     description: 'Less guessing. More informed decisions.',
     icon: BarChart3,
     accent: 'purple',
   },
   {
-    number: '06',
+    id: 'growth',
     title: 'Long-Term Growth',
     description: 'Build today. Grow for tomorrow.',
     icon: ArrowUpRight,
@@ -71,15 +71,18 @@ export function WhyChooseUsSection() {
   return (
     <section
       id="why-us"
-      className="relative overflow-hidden bg-[#080B14] py-24 sm:py-32 md:py-36 px-4 sm:px-6 md:px-12 text-[#FFFFFF] border-t border-b border-white/[0.06] select-none"
+      className="relative overflow-hidden py-24 sm:py-32 md:py-36 px-4 sm:px-6 md:px-12 text-[#FFFFFF] select-none"
+      style={{
+        background: 'linear-gradient(180deg, #050814 0%, #080B14 50%, #050814 100%)',
+      }}
     >
-      {/* 1. Subtle Dotted Matrix Grid Pattern */}
+      {/* 1. Subtle Night-Sky Starry Matrix Grid Pattern */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-20"
+        className="absolute inset-0 pointer-events-none opacity-25"
         style={{
           backgroundImage:
-            'radial-gradient(rgba(77, 53, 127, 0.4) 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
+            'radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
         }}
       />
 
@@ -97,7 +100,7 @@ export function WhyChooseUsSection() {
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute -top-24 -left-24 w-[520px] h-[520px] rounded-full bg-[#4D357F]/30 blur-[130px]"
+          className="absolute -top-24 -left-24 w-[520px] h-[520px] rounded-full bg-[#4D357F]/26 blur-[130px]"
         />
 
         {/* Green Glow Blob (Right to Bottom) */}
@@ -112,10 +115,10 @@ export function WhyChooseUsSection() {
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute -bottom-24 -right-24 w-[540px] h-[540px] rounded-full bg-[#20542D]/28 blur-[140px]"
+          className="absolute -bottom-24 -right-24 w-[540px] h-[540px] rounded-full bg-[#20542D]/24 blur-[140px]"
         />
 
-        {/* Deep Center Ambient Atmosphere */}
+        {/* Center Ambient Atmosphere */}
         <motion.div
           animate={{
             opacity: [0.15, 0.28, 0.15],
@@ -126,7 +129,7 @@ export function WhyChooseUsSection() {
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] rounded-full bg-[#4D357F]/20 blur-[150px]"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] rounded-full bg-[#4D357F]/18 blur-[150px]"
         />
       </div>
 
@@ -159,7 +162,7 @@ export function WhyChooseUsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-5 text-sm sm:text-base md:text-lg text-white/72 max-w-2xl font-normal leading-relaxed"
+            className="mt-5 text-sm sm:text-base md:text-lg text-white/75 max-w-2xl font-normal leading-relaxed"
           >
             A creative growth partner for brands that want more than just an online presence. We combine strategy, creativity, technology, AI and performance to build brands and experiences designed for what&apos;s next.
           </motion.p>
@@ -173,7 +176,7 @@ export function WhyChooseUsSection() {
 
             return (
               <motion.div
-                key={card.number}
+                key={card.id}
                 initial={{ opacity: 0, y: 35 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
@@ -183,8 +186,7 @@ export function WhyChooseUsSection() {
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 whileHover={{
-                  y: -8,
-                  scale: 1.01,
+                  y: -6,
                   transition: { duration: 0.25, ease: 'easeOut' },
                 }}
                 className={`group relative p-7 sm:p-8 rounded-[28px] bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] flex flex-col justify-between transition-all duration-300 ${
@@ -194,7 +196,7 @@ export function WhyChooseUsSection() {
                 }`}
               >
                 <div>
-                  {/* Top Bar: Icon Box + Number & Glowing Dot */}
+                  {/* Top Bar: Icon Box & Indicator Dot */}
                   <div className="flex items-center justify-between mb-6">
                     <div
                       className={`w-12 h-12 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center transition-all duration-300 group-hover:scale-105 ${
@@ -206,28 +208,17 @@ export function WhyChooseUsSection() {
                       <Icon className="w-5 h-5 text-white transition-transform duration-300 group-hover:scale-110" />
                     </div>
 
-                    <div className="flex items-center gap-2.5">
-                      <span className="font-mono text-xs font-bold text-white/40 group-hover:text-white/80 transition-colors">
-                        {card.number}
-                      </span>
-                      <div
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                          isGreen
-                            ? 'bg-[#20542D] group-hover:shadow-[0_0_10px_#20542D] group-hover:scale-125'
-                            : 'bg-[#4D357F] group-hover:shadow-[0_0_10px_#4D357F] group-hover:scale-125'
-                        }`}
-                      />
-                    </div>
+                    <div
+                      className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                        isGreen
+                          ? 'bg-[#20542D] group-hover:shadow-[0_0_10px_#20542D] group-hover:scale-125'
+                          : 'bg-[#4D357F] group-hover:shadow-[0_0_10px_#4D357F] group-hover:scale-125'
+                      }`}
+                    />
                   </div>
 
                   {/* Card Title */}
-                  <h3
-                    className={`text-xl font-bold tracking-tight text-white transition-colors duration-300 ${
-                      isGreen
-                        ? 'group-hover:text-white'
-                        : 'group-hover:text-white'
-                    }`}
-                  >
+                  <h3 className="text-xl font-bold tracking-tight text-white transition-colors duration-300">
                     {card.title}
                   </h3>
 

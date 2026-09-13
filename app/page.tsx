@@ -12,7 +12,6 @@ import { DropCapsuleSection } from '@/components/DropCapsuleSection';
 import { LetsWorkAnimationSection } from '@/components/LetsWorkAnimationSection';
 import { ProcessSection } from '@/components/ProcessSection';
 import { WhyChooseUsSection } from '@/components/WhyChooseUsSection';
-import { PackagesSection } from '@/components/PackagesSection';
 import OurMissionSection from '@/components/sections/our-mission-section';
 import { Footer } from '@/components/Footer';
 import { ContactModal } from '@/components/ContactModal';
@@ -27,13 +26,6 @@ export default function Home() {
   const handleOpenContact = (service?: string) => {
     setSelectedService(service);
     setContactModalOpen(true);
-  };
-
-  const handleExplore = () => {
-    const servicesEl = document.getElementById('services');
-    if (servicesEl) {
-      servicesEl.scrollIntoView({ behavior: 'smooth' });
-    }
   };
 
   return (
@@ -55,7 +47,6 @@ export default function Home() {
 
         {/* 3. Hero Section */}
         <HeroSection
-          onExplore={handleExplore}
           onOpenContact={() => handleOpenContact()}
         />
 
@@ -65,7 +56,7 @@ export default function Home() {
         {/* 5. Infinite Marquee Keywords Section */}
         <MarqueeSection />
 
-        {/* 6. Services Section (Horizontal Pinned Scroll on Desktop / Vertical Stack on Mobile) */}
+        {/* 6. Services Section (Continuous Infinite Carousel with Pause on Hover) */}
         <ServicesSection onSelectService={(service) => handleOpenContact(service)} />
 
         {/* 7. Drop Capsule Tech Ecosystem Section */}
@@ -80,13 +71,10 @@ export default function Home() {
         {/* 10. Why Choose Us Section */}
         <WhyChooseUsSection />
 
-        {/* 11. Packages Section */}
-        <PackagesSection onSelectPackage={(pkg) => handleOpenContact(`Package: ${pkg}`)} />
-
-        {/* 12. Our Mission: Think Beyond, Build Beyond Section */}
+        {/* 11. Our Mission: Think Beyond, Build Beyond Section */}
         <OurMissionSection onGetStarted={() => handleOpenContact()} />
 
-        {/* 13. Footer */}
+        {/* 12. Footer */}
         <Footer
           onOpenContact={() => handleOpenContact()}
           onOpenLegal={(type) => setLegalModalType(type)}

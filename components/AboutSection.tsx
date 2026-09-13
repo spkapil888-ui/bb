@@ -61,7 +61,7 @@ export function AboutSection({ onGetStarted }: AboutSectionProps) {
             {/* Section Tag */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#4D357F]/8 border border-[#4D357F]/20 text-[#4D357F] text-xs font-semibold uppercase tracking-wider mb-6">
               <Sparkles className="w-3.5 h-3.5 text-[#4D357F]" />
-              About Our Agency
+              About Us
             </div>
 
             {/* Heading */}

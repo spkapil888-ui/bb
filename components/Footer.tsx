@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { motion } from 'motion/react';
 import { ArrowUpRight, ArrowUp } from 'lucide-react';
 
 interface FooterProps {
@@ -25,22 +26,57 @@ export function Footer({ onOpenContact, onOpenLegal }: FooterProps) {
     { name: 'Services', href: '#services' },
     { name: 'Process', href: '#process' },
     { name: 'Why Us', href: '#why-us' },
-    { name: 'Packages', href: '#packages' },
   ];
 
   return (
     <footer
       id="main-footer"
-      className="footer relative text-[#FFFFFF] pt-16 sm:pt-20 pb-12 px-4 sm:px-6 md:px-12 select-none"
+      className="footer relative text-[#FFFFFF] pt-16 sm:pt-20 pb-12 px-4 sm:px-6 md:px-12 select-none overflow-hidden"
+      style={{
+        background: 'linear-gradient(180deg, #050814 0%, #080B14 100%)',
+      }}
     >
-      {/* Dark overlay at bottom to ensure solid dark grounding */}
-      <div className="footer-bg-dark-bottom" />
+      {/* 1. Subtle Night Sky Starry Dot Matrix */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-20"
+        style={{
+          backgroundImage:
+            'radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+      />
+
+      {/* 2. Moving Cosmic Ambient Glow (Purple & Green) matching Why Choose Us */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-0">
+        <motion.div
+          animate={{
+            x: ['-5%', '10%', '-5%'],
+            y: ['-5%', '8%', '-5%'],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="absolute -top-16 -left-16 w-[450px] h-[450px] rounded-full bg-[#4D357F]/20 blur-[130px]"
+        />
+        <motion.div
+          animate={{
+            x: ['5%', '-8%', '5%'],
+            y: ['8%', '-5%', '8%'],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="absolute -bottom-16 -right-16 w-[450px] h-[450px] rounded-full bg-[#20542D]/18 blur-[130px]"
+        />
+      </div>
 
       <div className="w-full max-w-6xl mx-auto relative z-10">
-        
         {/* Main Grid: Brand Bio, Navigation, Social */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 pb-14 border-b border-white/[0.08]">
-          
           {/* Brand & Bio */}
           <div className="md:col-span-6 lg:col-span-6 flex flex-col items-start">
             <a
@@ -61,7 +97,7 @@ export function Footer({ onOpenContact, onOpenLegal }: FooterProps) {
               />
             </a>
 
-            <p className="text-[15px] sm:text-base text-white/68 leading-relaxed max-w-md">
+            <p className="text-[15px] sm:text-base text-white/70 leading-relaxed max-w-md">
               We help ambitious businesses build stronger brands, create meaningful digital experiences, and grow through strategy-led design, development, and digital marketing.
             </p>
           </div>
@@ -106,11 +142,10 @@ export function Footer({ onOpenContact, onOpenLegal }: FooterProps) {
               ))}
             </ul>
           </div>
-
         </div>
 
         {/* Bottom Bar: Copyright & Clean Text Links */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-5 text-sm text-white/52">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-5 text-sm text-white/55">
           <p>© 2026 Buzz N Beyond Innovations. All rights reserved.</p>
 
           <div className="flex flex-wrap items-center gap-6 sm:gap-8">
@@ -141,9 +176,7 @@ export function Footer({ onOpenContact, onOpenLegal }: FooterProps) {
             </button>
           </div>
         </div>
-
       </div>
     </footer>
   );
 }
-

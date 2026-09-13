@@ -255,6 +255,8 @@
   transform-origin: center center;
   will-change: transform;
   user-select: none;
+  display: inline-block;
+  width: max-content;
 }
 
 /* What—We Do / Core Capabilities Section Styles */
@@ -262,7 +264,6 @@
   position: relative;
   background: #080B14;
   color: #FFFFFF;
-  min-height: 100vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -273,16 +274,29 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  padding: 10px 0 30px;
 }
 
-.what-we-do-track {
+.what-we-do-loop {
   display: flex;
-  gap: 40px;
+  gap: 28px;
+  width: max-content;
+  animation: whatWeDoMarquee 38s linear infinite;
   will-change: transform;
-  transform: translate3d(0, 0, 0);
-  padding-left: max(5vw, 64px);
-  padding-right: max(20vw, 240px);
-  align-items: stretch;
+}
+
+.what-we-do-wrapper:hover .what-we-do-loop,
+.what-we-do-loop:hover {
+  animation-play-state: paused;
+}
+
+@keyframes whatWeDoMarquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 .what-card {
@@ -293,11 +307,11 @@
   border: 1px solid #4d357f59;
   border-radius: 32px;
   flex-direction: column;
-  flex: 0 0 clamp(379px, 36vw, 494px);
+  flex: 0 0 clamp(300px, 30vw, 440px);
   justify-content: space-between;
   height: auto;
-  min-height: 453px;
-  padding: 23px 26px;
+  min-height: 450px;
+  padding: 26px 28px;
   transition: border-color .3s, transform .3s, box-shadow .3s;
   display: flex;
   transform: translateZ(0);
@@ -306,7 +320,7 @@
 .what-card:hover {
   border-color: #20542D;
   transform: translateY(-6px);
-  box-shadow: 0 24px 70px rgba(32, 84, 45, 0.14);
+  box-shadow: 0 20px 60px rgba(32, 84, 45, 0.2);
 }
 
 .what-card-list {
@@ -326,37 +340,7 @@
 }
 
 .what-card:hover .what-card-list li {
-  color: rgba(255, 255, 255, 0.88);
-}
-
-@media (max-width: 991px) {
-  .what-we-do-section {
-    min-height: auto;
-    overflow: visible;
-    padding: 80px 0;
-    display: block;
-  }
-
-  .what-we-do-wrapper {
-    overflow: visible;
-  }
-
-  .what-we-do-track {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 24px;
-    transform: none !important;
-    padding: 0 20px;
-    will-change: auto;
-  }
-
-  .what-card {
-    width: 100%;
-    min-height: auto;
-    flex: none;
-    padding: 32px 24px;
-    border-radius: 24px;
-  }
+  color: rgba(255, 255, 255, 0.92);
 }
 
 /* Roadmap & Journey Section Styles */

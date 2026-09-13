@@ -19,14 +19,13 @@ export function Navbar({ onOpenContact }: NavbarProps) {
     { name: 'Services', href: '#services' },
     { name: 'Process', href: '#process' },
     { name: 'Why Us', href: '#why-us' },
-    { name: 'Packages', href: '#packages' },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sectionIds = ['about', 'services', 'process', 'why-us', 'packages'];
+      const sectionIds = ['about', 'services', 'process', 'why-us'];
       const scrollPosition = window.scrollY + 180;
 
       if (window.scrollY < 200) {

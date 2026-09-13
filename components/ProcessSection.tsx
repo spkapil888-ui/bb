@@ -22,56 +22,56 @@ if (typeof window !== 'undefined') {
 
 const steps = [
   {
-    num: '01',
-    label: '01 — DISCOVER',
+    id: 'discover',
+    label: 'DISCOVER',
     title: 'Find the Opportunity',
     chip: 'Research → Insights',
     icon: Search,
     desc: 'Uncovering audience needs, market gaps, and clear value proposition.',
   },
   {
-    num: '02',
-    label: '02 — STRATEGIZE',
+    id: 'strategize',
+    label: 'STRATEGIZE',
     title: 'Map the Direction',
     chip: 'Strategy → Clarity',
     icon: Compass,
     desc: 'Defining brand positioning, architectural roadmap, and KPI milestones.',
   },
   {
-    num: '03',
-    label: '03 — DESIGN',
+    id: 'design',
+    label: 'DESIGN',
     title: 'Create the Experience',
     chip: 'Experience → Identity',
     icon: Layout,
     desc: 'Crafting user flows, intuitive interfaces, and aesthetic identity systems.',
   },
   {
-    num: '04',
-    label: '04 — VALIDATE',
+    id: 'validate',
+    label: 'VALIDATE',
     title: 'Make It Better',
     chip: 'Test → Refine',
     icon: CheckCircle2,
     desc: 'Iterative prototyping, user feedback, and experience optimization.',
   },
   {
-    num: '05',
-    label: '05 — BUILD',
+    id: 'build',
+    label: 'BUILD',
     title: 'Bring It to Life',
     chip: 'Create → Develop',
     icon: Code,
     desc: 'Engineering scalable, secure, and high-performance applications.',
   },
   {
-    num: '06',
-    label: '06 — LAUNCH',
+    id: 'launch',
+    label: 'LAUNCH',
     title: 'Make Your Mark',
     chip: 'Deploy → Deliver',
     icon: Rocket,
     desc: 'Zero-downtime deployment, infrastructure audit, and public launch.',
   },
   {
-    num: '07',
-    label: '07 — GROW',
+    id: 'grow',
+    label: 'GROW',
     title: 'Turn Momentum Into Growth',
     chip: 'Measure → Scale',
     icon: TrendingUp,
@@ -390,7 +390,7 @@ export function ProcessSection() {
 
               return (
                 <div
-                  key={step.num}
+                  key={step.id}
                   style={{
                     position: 'absolute',
                     left: leftPos,
@@ -485,7 +485,7 @@ export function ProcessSection() {
 
               return (
                 <div
-                  key={step.num}
+                  key={step.id}
                   className="roadmap-card-mobile roadmap-card relative group"
                 >
                   {/* Step Road Connector Dot */}

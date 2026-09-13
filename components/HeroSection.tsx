@@ -13,35 +13,30 @@ import {
 } from 'lucide-react';
 
 interface HeroSectionProps {
-  onExplore: () => void;
   onOpenContact: () => void;
 }
 
-export function HeroSection({ onExplore, onOpenContact }: HeroSectionProps) {
+export function HeroSection({ onOpenContact }: HeroSectionProps) {
   const connectedItems = [
     {
-      step: '01',
       title: 'STRATEGY',
       description: 'Insight-led strategies that create clarity and direction.',
       icon: Compass,
       accentColor: '#4D357F',
     },
     {
-      step: '02',
       title: 'DESIGN',
       description: 'Creative design that builds identity and connection.',
       icon: Layers,
       accentColor: '#4D357F',
     },
     {
-      step: '03',
       title: 'TECHNOLOGY',
       description: 'Powerful technology that builds scalable digital solutions.',
       icon: Cpu,
       accentColor: '#4D357F',
     },
     {
-      step: '04',
       title: 'GROWTH',
       description: 'Data-driven growth that delivers impact and results.',
       icon: TrendingUp,
@@ -141,21 +136,12 @@ export function HeroSection({ onExplore, onOpenContact }: HeroSectionProps) {
               className="mt-8 sm:mt-9 flex flex-wrap items-center gap-4"
             >
               <button
-                id="hero-cta-explore"
-                onClick={onExplore}
-                className="btn-primary group"
-              >
-                <span>Explore Our Work</span>
-                <ArrowRight className="w-4 h-4 arrow" />
-              </button>
-
-              <button
                 id="hero-cta-contact"
                 onClick={onOpenContact}
-                className="btn-secondary group"
+                className="btn-primary group"
               >
-                <Sparkles className="w-4 h-4 text-[#4D357F]" />
                 <span>Start a Project</span>
+                <ArrowRight className="w-4 h-4 arrow" />
               </button>
             </motion.div>
           </div>
@@ -237,14 +223,12 @@ export function HeroSection({ onExplore, onOpenContact }: HeroSectionProps) {
                   }}
                   className="group relative p-5 sm:p-6 rounded-2xl bg-[#F8F7F5] border border-[#E8E5EF] hover:border-[#4D357F]/50 hover:bg-white transition-all duration-300 hover:shadow-md hover:shadow-[#4D357F]/8 hover:-translate-y-1"
                 >
-                  {/* Step Number Badge */}
+                  {/* Icon & Indicator */}
                   <div className="flex items-center justify-between mb-3.5">
                     <div className="w-10 h-10 rounded-xl bg-white border border-[#E8E5EF] flex items-center justify-center text-[#080B14] group-hover:bg-[#080B14] group-hover:text-white transition-colors">
                       <Icon className="w-4 h-4 text-[#4D357F] group-hover:text-white" />
                     </div>
-                    <span className="text-xs font-mono font-bold text-[#4D357F]/70">
-                      {item.step}
-                    </span>
+                    <div className="w-2 h-2 rounded-full bg-[#4D357F]/30 group-hover:bg-[#20542D] group-hover:scale-125 transition-all" />
                   </div>
 
                   {/* Title */}

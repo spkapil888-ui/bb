@@ -38,8 +38,6 @@ export function Loader({ onComplete }: LoaderProps) {
     return () => cancelAnimationFrame(animId);
   }, []);
 
-  const formattedCount = count.toString().padStart(3, '0');
-
   return (
     <AnimatePresence
       onExitComplete={() => {
@@ -71,28 +69,22 @@ export function Loader({ onComplete }: LoaderProps) {
             </div>
           </div>
 
-          {/* Bottom-left corner counter & brand accent line */}
-          <div className="flex flex-col gap-3">
-            <div className="flex items-end gap-4">
-              <div className="font-mono text-6xl sm:text-7xl md:text-8xl font-bold tracking-tighter text-white tabular-nums">
-                {formattedCount}
-              </div>
-              <div className="pb-3 text-xs tracking-widest text-[#4D357F] font-semibold uppercase">
-                / 100%
-              </div>
-            </div>
-
-            {/* Small brand accent progress line */}
-            <div className="relative w-48 sm:w-64 h-[2px] bg-white/10 rounded-full overflow-hidden">
+          {/* Bottom-left brand accent progress line */}
+          <div className="flex flex-col gap-4">
+            {/* Elegant brand loading progress line */}
+            <div className="relative w-64 sm:w-80 h-[3px] bg-white/10 rounded-full overflow-hidden">
               <motion.div
                 className="absolute left-0 top-0 bottom-0 bg-[#4D357F]"
                 style={{ width: `${count}%` }}
                 transition={{ ease: 'easeOut' }}
               />
             </div>
-            <p className="text-[11px] text-[#E8E5EF]/50 tracking-wider uppercase font-mono">
-              Loading Digital Architecture...
-            </p>
+            <div className="flex items-center gap-2.5">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#20542D] animate-ping" />
+              <p className="text-xs text-[#E8E5EF]/60 tracking-wider uppercase font-mono">
+                Loading Digital Architecture...
+              </p>
+            </div>
           </div>
         </motion.div>
       )}
@@ -111,11 +103,7 @@ export function Loader({ onComplete }: LoaderProps) {
             onComplete();
           }}
         >
-          <div className="w-full h-full bg-[#080B14] flex flex-col justify-end p-8 md:p-14">
-            <div className="font-mono text-6xl sm:text-7xl md:text-8xl font-bold tracking-tighter text-white/40">
-              100
-            </div>
-          </div>
+          <div className="w-full h-full bg-[#080B14]" />
         </motion.div>
       )}
     </AnimatePresence>
