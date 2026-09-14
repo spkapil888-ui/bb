@@ -686,53 +686,50 @@
   box-shadow: 0 18px 45px rgba(32, 84, 45, 0.22);
 }
 
-/* Footer Dark Style matching Why Choose Us */
+/* Footer Gradient Color & Glow */
 .footer {
   position: relative;
   overflow: hidden;
-  background: #080B14;
-  color: #FFFFFF;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at 18% 8%, rgba(77, 53, 127, 0.55) 0%, transparent 28%),
+    radial-gradient(circle at 88% 18%, rgba(32, 84, 45, 0.34) 0%, transparent 30%),
+    radial-gradient(circle at 50% 100%, rgba(77, 53, 127, 0.42) 0%, transparent 42%),
+    linear-gradient(135deg, #080B14 0%, #100B24 42%, #080B14 72%, #06120D 100%);
+  color: #ffffff;
+  border: 1px solid rgba(77, 53, 127, 0.45);
+  border-radius: 34px;
 }
 
+/* soft moving glow */
 .footer::before {
   content: "";
   position: absolute;
-  inset: -25%;
+  inset: -30%;
   background:
-    radial-gradient(circle at 18% 25%, rgba(77, 53, 127, 0.22), transparent 34%),
-    radial-gradient(circle at 82% 65%, rgba(32, 84, 45, 0.16), transparent 36%);
-  animation: footerGradientMove 14s ease-in-out infinite alternate;
+    radial-gradient(circle at 20% 70%, rgba(77, 53, 127, 0.42), transparent 30%),
+    radial-gradient(circle at 80% 60%, rgba(32, 84, 45, 0.28), transparent 34%),
+    linear-gradient(120deg, transparent 20%, rgba(77, 53, 127, 0.28) 48%, transparent 72%);
+  filter: blur(24px);
+  opacity: 0.9;
+  animation: footerGlowMove 14s ease-in-out infinite alternate;
   pointer-events: none;
   z-index: 0;
-  mix-blend-mode: normal;
 }
 
+/* bottom neon wave */
 .footer::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 24px 24px;
-  opacity: 0.12;
-  pointer-events: none;
-  z-index: 0;
-  mix-blend-mode: normal;
-}
-
-/* Dark overlay to remove bottom white shade */
-.footer-bg-dark-bottom {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 45%;
-  background: linear-gradient(
-    to bottom,
-    rgba(8, 11, 20, 0) 0%,
-    rgba(8, 11, 20, 0.72) 55%,
-    #080B14 100%
-  );
+  left: -10%;
+  right: -10%;
+  bottom: -42%;
+  height: 70%;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(77, 53, 127, 0.75), transparent 48%),
+    radial-gradient(ellipse at 82% 45%, rgba(32, 84, 45, 0.42), transparent 46%),
+    linear-gradient(90deg, transparent, rgba(77, 53, 127, 0.38), transparent);
+  filter: blur(18px);
+  opacity: 0.85;
   pointer-events: none;
   z-index: 0;
 }
@@ -742,12 +739,12 @@
   z-index: 1;
 }
 
-@keyframes footerGradientMove {
+@keyframes footerGlowMove {
   0% {
-    transform: translate3d(-2%, -1%, 0) scale(1);
+    transform: translate3d(-3%, -2%, 0) scale(1);
   }
   100% {
-    transform: translate3d(2%, 1%, 0) scale(1.04);
+    transform: translate3d(3%, 2%, 0) scale(1.08);
   }
 }
 

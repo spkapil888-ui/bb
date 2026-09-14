@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Globe2, Lightbulb, Handshake } from "lucide-react";
 import { GLSLHills } from "@/components/ui/glsl-hills";
 

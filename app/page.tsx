@@ -11,7 +11,7 @@ import { ServicesSection } from '@/components/ServicesSection';
 import { DropCapsuleSection } from '@/components/DropCapsuleSection';
 import { LetsWorkAnimationSection } from '@/components/LetsWorkAnimationSection';
 import { ProcessSection } from '@/components/ProcessSection';
-import { WhyChooseUsSection } from '@/components/WhyChooseUsSection';
+import { WhyChooseUsSection } from '@/components/sections/why-choose-us';
 import OurMissionSection from '@/components/sections/our-mission-section';
 import { Footer } from '@/components/Footer';
 import { ContactModal } from '@/components/ContactModal';

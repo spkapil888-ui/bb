@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'motion/react';
+import bannerImg from '@/assets/img/banner-img.png';
 import {
   ArrowRight,
   Compass,
@@ -183,8 +184,8 @@ export function HeroSection({ onOpenContact }: HeroSectionProps) {
                 className="relative w-full h-full"
               >
                 <Image
-                  src="https://dev.buzznbeyond.com/wp-content/uploads/2026/07/Untitled-design-9.png"
-                  alt="Buzz N Beyond Innovation Vector"
+                  src={bannerImg}
+                  alt="Buzz N Beyond Banner Image"
                   fill
                   priority
                   referrerPolicy="no-referrer"

@@ -29,52 +29,12 @@ export function Footer({ onOpenContact, onOpenLegal }: FooterProps) {
   ];
 
   return (
-    <footer
-      id="main-footer"
-      className="footer relative text-[#FFFFFF] pt-16 sm:pt-20 pb-12 px-4 sm:px-6 md:px-12 select-none overflow-hidden"
-      style={{
-        background: 'linear-gradient(180deg, #050814 0%, #080B14 100%)',
-      }}
-    >
-      {/* 1. Subtle Night Sky Starry Dot Matrix */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-20"
-        style={{
-          backgroundImage:
-            'radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px)',
-          backgroundSize: '32px 32px',
-        }}
-      />
-
-      {/* 2. Moving Cosmic Ambient Glow (Purple & Green) matching Why Choose Us */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-0">
-        <motion.div
-          animate={{
-            x: ['-5%', '10%', '-5%'],
-            y: ['-5%', '8%', '-5%'],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute -top-16 -left-16 w-[450px] h-[450px] rounded-full bg-[#4D357F]/20 blur-[130px]"
-        />
-        <motion.div
-          animate={{
-            x: ['5%', '-8%', '5%'],
-            y: ['8%', '-5%', '8%'],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute -bottom-16 -right-16 w-[450px] h-[450px] rounded-full bg-[#20542D]/18 blur-[130px]"
-        />
-      </div>
-
-      <div className="w-full max-w-6xl mx-auto relative z-10">
+    <div className="w-full bg-[#F8F7F5]">
+      <footer
+        id="main-footer"
+        className="footer relative text-[#FFFFFF] pt-16 sm:pt-20 pb-12 px-6 sm:px-8 md:px-12 select-none overflow-hidden w-full !rounded-none !border-x-0 !border-b-0"
+      >
+        <div className="w-full max-w-6xl mx-auto relative z-10">
         {/* Main Grid: Brand Bio, Navigation, Social */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14 pb-14 border-b border-white/[0.08]">
           {/* Brand & Bio */}
@@ -178,5 +138,6 @@ export function Footer({ onOpenContact, onOpenLegal }: FooterProps) {
         </div>
       </div>
     </footer>
-  );
+  </div>
+);
 }
