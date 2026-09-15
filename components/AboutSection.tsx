@@ -134,7 +134,7 @@ export function AboutSection({ onGetStarted }: AboutSectionProps) {
                         >
                           <Icon className="w-4 h-4" />
                         </div>
-                        <span className="mt-1 px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold uppercase bg-white/90 text-[#080B14] shadow-xs border border-[#E8E5EF] whitespace-nowrap">
+                        <span className="mt-1 px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase bg-white/90 text-[#080B14] shadow-xs border border-[#E8E5EF] whitespace-nowrap">
                           {node.label}
                         </span>
                       </div>
@@ -163,7 +163,7 @@ export function AboutSection({ onGetStarted }: AboutSectionProps) {
                         >
                           <Icon className="w-3.5 h-3.5" />
                         </div>
-                        <span className="mt-1 px-1.5 py-0.5 rounded text-[9px] font-mono font-semibold uppercase bg-white/90 text-[#080B14] shadow-xs border border-[#E8E5EF] whitespace-nowrap">
+                        <span className="mt-1 px-1.5 py-0.5 rounded text-[9px] font-semibold uppercase bg-white/90 text-[#080B14] shadow-xs border border-[#E8E5EF] whitespace-nowrap">
                           {node.label}
                         </span>
                       </div>

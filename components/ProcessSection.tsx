@@ -412,7 +412,7 @@ export function ProcessSection() {
 
                   {/* Card Header */}
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="font-mono text-[11px] font-bold text-[#4D357F] tracking-wider uppercase">
+                    <span className="text-[11px] font-bold text-[#4D357F] tracking-wider uppercase">
                       {step.label}
                     </span>
                     <div className="w-7 h-7 rounded-lg bg-[#F8F7F5] border border-[#E8E5EF] flex items-center justify-center group-hover:bg-[#20542D] group-hover:text-white transition-colors duration-300">
@@ -426,7 +426,7 @@ export function ProcessSection() {
                   </h3>
 
                   {/* Tagline / Chip */}
-                  <div className="mt-2 pt-2 border-t border-[#E8E5EF] flex items-center justify-between text-[10.5px] font-mono font-semibold text-[#20542D]">
+                  <div className="mt-2 pt-2 border-t border-[#E8E5EF] flex items-center justify-between text-[10.5px] font-semibold text-[#20542D]">
                     <span>{step.chip}</span>
                     <ArrowRight className="w-3 h-3 opacity-60 group-hover:translate-x-0.5 group-hover:opacity-100 transition-all" />
                   </div>
@@ -500,7 +500,7 @@ export function ProcessSection() {
 
                   {/* Card Header */}
                   <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="font-mono text-xs font-bold text-[#4D357F] tracking-wider uppercase">
+                    <span className="text-xs font-bold text-[#4D357F] tracking-wider uppercase">
                       {step.label}
                     </span>
                     <div className="w-8 h-8 rounded-xl bg-[#F8F7F5] border border-[#E8E5EF] flex items-center justify-center group-hover:bg-[#20542D] group-hover:text-white transition-colors duration-300">
@@ -519,7 +519,7 @@ export function ProcessSection() {
                   </p>
 
                   {/* Chip / Tagline */}
-                  <div className="pt-2 border-t border-[#E8E5EF] flex items-center justify-between text-xs font-mono font-semibold text-[#20542D]">
+                  <div className="pt-2 border-t border-[#E8E5EF] flex items-center justify-between text-xs font-semibold text-[#20542D]">
                     <span>{step.chip}</span>
                     <ArrowRight className="w-3.5 h-3.5 opacity-60 group-hover:translate-x-1 group-hover:opacity-100 transition-all" />
                   </div>

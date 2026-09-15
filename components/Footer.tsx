@@ -64,7 +64,7 @@ export function Footer({ onOpenContact, onOpenLegal }: FooterProps) {
 
           {/* Navigation Links */}
           <div className="md:col-span-3 lg:col-span-3 flex flex-col">
-            <h4 className="text-xs font-mono uppercase tracking-widest text-[#FFFFFF] mb-4 font-bold">
+            <h4 className="text-xs uppercase tracking-widest text-[#FFFFFF] mb-4 font-bold">
               Navigation
             </h4>
             <ul className="space-y-3">
@@ -83,7 +83,7 @@ export function Footer({ onOpenContact, onOpenLegal }: FooterProps) {
 
           {/* Social Links */}
           <div className="md:col-span-3 lg:col-span-3 flex flex-col">
-            <h4 className="text-xs font-mono uppercase tracking-widest text-[#FFFFFF] mb-4 font-bold">
+            <h4 className="text-xs uppercase tracking-widest text-[#FFFFFF] mb-4 font-bold">
               Connect
             </h4>
             <ul className="space-y-3">

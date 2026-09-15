@@ -64,7 +64,7 @@ export function Loader({ onComplete }: LoaderProps) {
                 Buzz N Beyond Innovations
               </span>
             </div>
-            <div className="text-xs text-[#E8E5EF]/40 tracking-wider hidden sm:block font-mono">
+            <div className="text-xs text-[#E8E5EF]/50 tracking-wider hidden sm:block font-medium">
               INNOVATE · ELEVATE · GO BEYOND
             </div>
           </div>
@@ -81,7 +81,7 @@ export function Loader({ onComplete }: LoaderProps) {
             </div>
             <div className="flex items-center gap-2.5">
               <div className="w-1.5 h-1.5 rounded-full bg-[#20542D] animate-ping" />
-              <p className="text-xs text-[#E8E5EF]/60 tracking-wider uppercase font-mono">
+              <p className="text-xs text-[#E8E5EF]/70 tracking-wider uppercase font-medium">
                 Loading Digital Architecture...
               </p>
             </div>
