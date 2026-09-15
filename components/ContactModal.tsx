@@ -34,12 +34,16 @@ export function ContactModal({ isOpen, onClose, initialService }: ContactModalPr
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitted(true);
-      confetti({
-        particleCount: 75,
-        spread: 60,
-        origin: { y: 0.6 },
-        colors: ['#4D357F', '#20542D', '#080B14', '#FFFFFF'],
-      });
+      try {
+        confetti({
+          particleCount: 75,
+          spread: 60,
+          origin: { y: 0.6 },
+          colors: ['#4D357F', '#20542D', '#080B14', '#FFFFFF'],
+        });
+      } catch (err) {
+        console.warn('Confetti animation skipped:', err);
+      }
     }, 600);
   };
 

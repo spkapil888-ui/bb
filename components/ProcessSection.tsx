@@ -102,7 +102,14 @@ export function ProcessSection() {
         const dots = gsap.utils.toArray<HTMLElement>('.roadmap-dot-desktop');
 
         if (path && cards.length > 0) {
-          const pathLength = path.getTotalLength();
+          let pathLength = 2800;
+          try {
+            if (typeof path.getTotalLength === 'function') {
+              pathLength = path.getTotalLength() || 2800;
+            }
+          } catch {
+            pathLength = 2800;
+          }
 
           gsap.set(path, {
             strokeDasharray: pathLength,
@@ -205,7 +212,14 @@ export function ProcessSection() {
         const dots = gsap.utils.toArray<HTMLElement>('.roadmap-dot-mobile');
 
         if (path && cards.length > 0) {
-          const pathLength = path.getTotalLength();
+          let pathLength = 2500;
+          try {
+            if (typeof path.getTotalLength === 'function') {
+              pathLength = path.getTotalLength() || 2500;
+            }
+          } catch {
+            pathLength = 2500;
+          }
 
           gsap.set(path, {
             strokeDasharray: pathLength,

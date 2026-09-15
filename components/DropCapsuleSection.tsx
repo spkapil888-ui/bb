@@ -122,7 +122,13 @@ export function DropCapsuleSection() {
 
     const bodies: CapsuleBody[] = [];
 
+    let windowListenersCleanup: (() => void) | null = null;
+
     const cleanupPhysics = () => {
+      if (windowListenersCleanup) {
+        windowListenersCleanup();
+        windowListenersCleanup = null;
+      }
       if (techAnimationFrame) {
         cancelAnimationFrame(techAnimationFrame);
         techAnimationFrame = null;
@@ -334,6 +340,14 @@ export function DropCapsuleSection() {
       window.addEventListener('mouseup', onPointerUp);
       window.addEventListener('touchend', onPointerUp);
       window.addEventListener('touchcancel', onPointerUp);
+
+      windowListenersCleanup = () => {
+        window.removeEventListener('mousemove', onPointerMove);
+        window.removeEventListener('touchmove', onPointerMove);
+        window.removeEventListener('mouseup', onPointerUp);
+        window.removeEventListener('touchend', onPointerUp);
+        window.removeEventListener('touchcancel', onPointerUp);
+      };
 
       techRunner = Runner.create();
       Runner.run(techRunner, techEngine);

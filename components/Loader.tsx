@@ -35,8 +35,15 @@ export function Loader({ onComplete }: LoaderProps) {
     };
 
     const animId = requestAnimationFrame(updateCounter);
-    return () => cancelAnimationFrame(animId);
-  }, []);
+    const fallbackTimer = setTimeout(() => {
+      onComplete();
+    }, 3200);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      clearTimeout(fallbackTimer);
+    };
+  }, [onComplete]);
 
   return (
     <AnimatePresence

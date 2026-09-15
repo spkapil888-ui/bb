@@ -24,7 +24,7 @@ export function CharReveal({
   const isInView = useInView(containerRef, { once: true, margin: '-10% 0px -10% 0px' });
 
   // Split into words and chars so words wrap properly
-  const words = text.split(' ');
+  const words = (text || '').split(' ');
 
   const Tag = tag as any;
 

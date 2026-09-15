@@ -109,77 +109,101 @@ export function GLSLHills({
     if (!container || !canvas) return;
 
     let animId: number | null = null;
+    let renderer: THREE.WebGLRenderer | null = null;
+    let geometry: THREE.PlaneGeometry | null = null;
+    let material: THREE.ShaderMaterial | null = null;
+    let mesh: THREE.Mesh | null = null;
+    let resizeObserver: ResizeObserver | null = null;
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      55,
-      container.clientWidth / Math.max(container.clientHeight, 1),
-      0.1,
-      1000
-    );
-    camera.position.set(0, -65, cameraZ);
-    camera.lookAt(0, 15, 0);
+    try {
+      const scene = new THREE.Scene();
+      const initialW = container.clientWidth || 300;
+      const initialH = Math.max(container.clientHeight, 1);
 
-    const renderer = new THREE.WebGLRenderer({
-      canvas,
-      alpha: true,
-      antialias: true,
-      powerPreference: "high-performance",
-    });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setClearColor(0x000000, 0);
+      const camera = new THREE.PerspectiveCamera(
+        55,
+        initialW / initialH,
+        0.1,
+        1000
+      );
+      camera.position.set(0, -65, cameraZ);
+      camera.lookAt(0, 15, 0);
 
-    const geometry = new THREE.PlaneGeometry(planeSize, planeSize, 110, 110);
+      renderer = new THREE.WebGLRenderer({
+        canvas,
+        alpha: true,
+        antialias: true,
+        powerPreference: "high-performance",
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(initialW, initialH);
+      renderer.setClearColor(0x000000, 0);
 
-    const uniforms = {
-      uTime: { value: 0 },
-      uSpeed: { value: speed },
-    };
+      geometry = new THREE.PlaneGeometry(planeSize, planeSize, 110, 110);
 
-    const material = new THREE.ShaderMaterial({
-      vertexShader,
-      fragmentShader,
-      uniforms,
-      transparent: true,
-      wireframe: true,
-      side: THREE.DoubleSide,
-      depthWrite: false,
-    });
+      const uniforms = {
+        uTime: { value: 0 },
+        uSpeed: { value: speed },
+      };
 
-    const mesh = new THREE.Mesh(geometry, material);
-    mesh.rotation.x = -Math.PI * 0.38;
-    scene.add(mesh);
+      material = new THREE.ShaderMaterial({
+        vertexShader,
+        fragmentShader,
+        uniforms,
+        transparent: true,
+        wireframe: true,
+        side: THREE.DoubleSide,
+        depthWrite: false,
+      });
 
-    const clock = new THREE.Clock();
+      mesh = new THREE.Mesh(geometry, material);
+      mesh.rotation.x = -Math.PI * 0.38;
+      scene.add(mesh);
 
-    const render = () => {
-      uniforms.uTime.value = clock.getElapsedTime();
-      renderer.render(scene, camera);
-      animId = requestAnimationFrame(render);
-    };
+      const clock = new THREE.Clock();
 
-    render();
+      const render = () => {
+        if (!renderer) return;
+        uniforms.uTime.value = clock.getElapsedTime();
+        renderer.render(scene, camera);
+        animId = requestAnimationFrame(render);
+      };
 
-    const handleResize = () => {
-      if (!container) return;
-      const w = container.clientWidth;
-      const h = Math.max(container.clientHeight, 1);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h);
-    };
+      render();
 
-    window.addEventListener("resize", handleResize);
+      const handleResize = () => {
+        if (!container || !renderer) return;
+        const w = container.clientWidth || 300;
+        const h = Math.max(container.clientHeight, 1);
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      };
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      if (animId !== null) cancelAnimationFrame(animId);
-      geometry.dispose();
-      material.dispose();
-      renderer.dispose();
-      scene.remove(mesh);
-    };
+      if (typeof ResizeObserver !== "undefined") {
+        resizeObserver = new ResizeObserver(() => {
+          handleResize();
+        });
+        resizeObserver.observe(container);
+      } else {
+        window.addEventListener("resize", handleResize);
+      }
+
+      return () => {
+        if (resizeObserver) {
+          resizeObserver.disconnect();
+        } else {
+          window.removeEventListener("resize", handleResize);
+        }
+        if (animId !== null) cancelAnimationFrame(animId);
+        geometry?.dispose();
+        material?.dispose();
+        renderer?.dispose();
+        if (mesh) scene.remove(mesh);
+      };
+    } catch (e) {
+      console.warn("GLSLHills WebGL initialization failed gracefully:", e);
+    }
   }, [cameraZ, planeSize, speed]);
 
   return (
