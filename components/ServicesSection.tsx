@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'motion/react';
 import { Sparkles, Layers, Cpu, TrendingUp, Palette, ArrowRight } from 'lucide-react';
 
 interface ServicesSectionProps {
@@ -62,16 +63,16 @@ const services = [
 ];
 
 export function ServicesSection({ onSelectService }: ServicesSectionProps) {
-  // Exactly 4 cards duplicated once for seamless infinite loop
+  // Exactly 4 cards duplicated once for seamless infinite loop on desktop
   const duplicatedServices = [...services, ...services];
 
   return (
     <section
       id="services"
-      className="what-we-do-section footer-theme-bg select-none relative overflow-hidden py-24 sm:py-32"
+      className="what-we-do-section footer-theme-bg select-none relative overflow-hidden py-14 sm:py-24 md:py-32"
     >
       {/* Header Area */}
-      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mb-12 sm:mb-16 relative z-10">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mb-8 sm:mb-16 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
             <div className="badge section-label inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-[#4D357F]/40 text-[#FFFFFF] text-xs font-semibold uppercase tracking-wider mb-4 backdrop-blur-md">
@@ -89,9 +90,68 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
         </div>
       </div>
 
-      {/* Infinite Smooth Carousel Track */}
+      {/* MOBILE ONLY (< md): Remove slider, show all in 4 rows with top scroll entrance */}
+      <div className="block md:hidden relative z-10 w-full px-4 sm:px-6 max-w-lg mx-auto">
+        <div className="flex flex-col gap-4">
+          {services.map((service, index) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={`mobile-${service.category}`}
+                initial={{ opacity: 0, y: 35 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-20px' }}
+                transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                onClick={() => onSelectService?.(service.category)}
+                className="group cursor-pointer w-full rounded-2xl bg-[#090C18]/80 border border-[#4D357F]/35 p-5 backdrop-blur-md transition-all duration-300 hover:border-[#20542D] hover:bg-white/[0.06] shadow-lg shadow-black/20"
+              >
+                {/* Row Header with Service Number, Title and Icon */}
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-md bg-[#4D357F]/40 text-[#FFFFFF] border border-[#4D357F]/60">
+                      0{index + 1}
+                    </span>
+                    <h3 className="text-xl font-bold text-white tracking-tight">
+                      {service.category}
+                    </h3>
+                  </div>
+                  <div className="w-9 h-9 rounded-xl bg-white/10 border border-[#4D357F]/40 flex items-center justify-center group-hover:bg-[#4D357F] transition-colors">
+                    <Icon className="w-4 h-4 text-white" />
+                  </div>
+                </div>
+
+                {/* Tagline */}
+                <p className="text-xs text-white/70 leading-relaxed mb-3.5">
+                  {service.tagline}
+                </p>
+
+                {/* Capabilities pills */}
+                <div className="flex flex-wrap gap-1.5 mb-3.5 pt-3 border-t border-white/10">
+                  {service.items.map((item) => (
+                    <span
+                      key={item}
+                      className="text-[11px] px-2.5 py-1 rounded-full bg-white/[0.05] text-white/80 border border-white/[0.08] flex items-center gap-1.5"
+                    >
+                      <span className="w-1 h-1 rounded-full bg-[#20542D]" />
+                      {item}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Bottom Action Hint */}
+                <div className="pt-2.5 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-white/50 group-hover:text-white transition-colors">
+                  <span>Explore Discipline</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1 text-[#4D357F] group-hover:text-[#20542D]" />
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* DESKTOP ONLY (>= md): Infinite Smooth Carousel Track */}
       <div
-        className="what-we-do-wrapper relative z-10 w-full overflow-hidden"
+        className="hidden md:block what-we-do-wrapper relative z-10 w-full overflow-hidden"
         style={{
           maskImage: 'linear-gradient(to right, transparent, black 32px, black calc(100% - 32px), transparent)',
           WebkitMaskImage: 'linear-gradient(to right, transparent, black 32px, black calc(100% - 32px), transparent)',

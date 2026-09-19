@@ -99,7 +99,7 @@ export function PackagesSection({ onSelectPackage }: PackagesSectionProps) {
   return (
     <section
       id="packages"
-      className="relative overflow-hidden bg-[#F8F7F5] py-24 sm:py-32 md:py-36 px-4 sm:px-6 md:px-12 text-[#080B14] select-none"
+      className="relative overflow-hidden bg-[#F8F7F5] py-14 sm:py-24 md:py-36 px-4 sm:px-6 md:px-12 text-[#080B14] select-none"
     >
       {/* Subtle Background Glow Elements (Very light green & purple ambient) */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#4D357F]/5 rounded-full blur-[120px] pointer-events-none -z-0" />
@@ -107,7 +107,7 @@ export function PackagesSection({ onSelectPackage }: PackagesSectionProps) {
 
       <div className="relative z-10 w-full max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16 sm:mb-20">
+        <div className="flex flex-col items-center text-center mb-10 sm:mb-20">
           {/* Small Label */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

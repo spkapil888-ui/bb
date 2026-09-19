@@ -430,10 +430,16 @@
 /* Roadmap & Journey Section Styles */
 .roadmap-journey-section {
   position: relative;
-  background: #F8F7F5;
+  background: radial-gradient(circle at 50% 35%, rgba(77, 53, 127, 0.07) 0%, rgba(32, 84, 45, 0.04) 40%, transparent 70%), #F8F7F5;
   color: #080B14;
   min-height: 100vh;
   overflow: hidden;
+}
+
+@media (max-width: 1023px) {
+  .roadmap-journey-section {
+    min-height: auto;
+  }
 }
 
 .roadmap-card {
@@ -574,7 +580,7 @@
 }
 
 .capsule.vertical img {
-  max-width: 34px;
+  max-width: 130px;
   max-height: 150px;
   transform: rotate(90deg);
 }
@@ -582,37 +588,58 @@
 @media (max-width: 768px) {
   .technology-ecosystem {
     min-height: auto;
-    padding: 80px 0 0;
+    padding: 40px 0 0;
+  }
+
+  .tech-heading-wrap h2 {
+    font-size: clamp(20px, 5.2vw, 28px);
+    line-height: 1.25;
+  }
+
+  .tech-heading-wrap p {
+    font-size: 13.5px;
+    line-height: 1.5;
+    margin-top: 12px;
   }
 
   .capsule-stage {
-    height: 55vh;
-    min-height: 380px;
-    margin-top: 50px;
-    margin-bottom: 40px;
+    height: 44vh;
+    min-height: 290px;
+    margin-top: 24px;
+    margin-bottom: 20px;
   }
 
   .capsule {
-    height: 68px;
-    min-width: 150px;
-    padding: 0 22px;
+    height: 44px;
+    min-width: 98px;
+    padding: 0 10px;
+    box-shadow: 0 8px 18px rgba(8, 11, 20, 0.08);
   }
 
   .capsule img {
-    max-width: 110px;
-    max-height: 28px;
+    max-width: 70px;
+    max-height: 19px;
   }
 
   .capsule.vertical {
-    width: 68px;
-    min-width: 68px;
-    height: 170px;
+    width: 44px;
+    min-width: 44px;
+    height: 108px;
+    padding: 6px 0;
   }
 
   .capsule.vertical img {
-    max-width: 28px;
-    max-height: 110px;
+    max-width: 80px;
+    max-height: 88px;
+    transform: rotate(90deg);
   }
+}
+
+.roadmap-dot-mobile.is-active {
+  background-color: #20542D !important;
+  border-color: #20542D !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 14px rgba(32, 84, 45, 0.4) !important;
 }
 
 /* Our Mission Section Styles */

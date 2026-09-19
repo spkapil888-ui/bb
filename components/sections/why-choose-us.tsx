@@ -71,11 +71,11 @@ export function WhyChooseUsSection() {
   return (
     <section
       id="why-us"
-      className="why-choose-us-section footer-theme-bg relative overflow-hidden py-24 sm:py-32 md:py-36 px-4 sm:px-6 md:px-12 text-[#FFFFFF] select-none"
+      className="why-choose-us-section footer-theme-bg relative overflow-hidden py-14 sm:py-24 md:py-36 px-4 sm:px-6 md:px-12 text-[#FFFFFF] select-none"
     >
       <div className="relative z-10 w-full max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16 sm:mb-20">
+        <div className="flex flex-col items-center text-center mb-10 sm:mb-20">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}

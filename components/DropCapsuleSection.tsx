@@ -214,18 +214,18 @@ export function DropCapsuleSection() {
 
       const isMobile = window.innerWidth < 768;
       const columns = isMobile ? 3 : 5;
-      const colWidth = Math.max(110, (width - 120) / columns);
+      const colWidth = Math.max(isMobile ? 70 : 110, (width - (isMobile ? 40 : 120)) / columns);
 
       capsuleEls.forEach((el, index) => {
         const isVertical = el.classList.contains('vertical');
-        const defaultW = isVertical ? (isMobile ? 68 : 90) : (isMobile ? 150 : 210);
-        const defaultH = isVertical ? (isMobile ? 170 : 230) : (isMobile ? 68 : 94);
+        const defaultW = isVertical ? (isMobile ? 44 : 90) : (isMobile ? 98 : 210);
+        const defaultH = isVertical ? (isMobile ? 108 : 230) : (isMobile ? 44 : 94);
 
         const w = el.offsetWidth > 20 ? el.offsetWidth : defaultW;
         const h = el.offsetHeight > 20 ? el.offsetHeight : defaultH;
 
-        const startX = 70 + (index % columns) * colWidth + (Math.random() - 0.5) * 30;
-        const startY = -120 - index * 60;
+        const startX = (isMobile ? 30 : 70) + (index % columns) * colWidth + (Math.random() - 0.5) * 15;
+        const startY = -80 - index * (isMobile ? 40 : 60);
 
         const body: CapsuleBody = Bodies.rectangle(startX, startY, w, h, {
           chamfer: { radius: Math.min(w, h) / 2 },

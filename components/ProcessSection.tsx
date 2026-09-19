@@ -83,8 +83,8 @@ export function ProcessSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const desktopPathRef = useRef<SVGPathElement>(null);
   const desktopArrowRef = useRef<SVGPolygonElement>(null);
-  const mobilePathRef = useRef<SVGPathElement>(null);
-  const mobileArrowRef = useRef<SVGPolygonElement>(null);
+  const mobileProgressRef = useRef<HTMLDivElement>(null);
+  const mobileContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -205,106 +205,59 @@ export function ProcessSection() {
           }
         }
       } else {
-        // Mobile Animation
-        const path = mobilePathRef.current;
-        const arrow = mobileArrowRef.current;
+        // Mobile Animation: Centered Natural Scroll with Progress Tracker (No Screen Pinning)
+        const progress = mobileProgressRef.current;
+        const container = mobileContainerRef.current;
         const cards = gsap.utils.toArray<HTMLElement>('.roadmap-card-mobile');
         const dots = gsap.utils.toArray<HTMLElement>('.roadmap-dot-mobile');
 
-        if (path && cards.length > 0) {
-          let pathLength = 2500;
-          try {
-            if (typeof path.getTotalLength === 'function') {
-              pathLength = path.getTotalLength() || 2500;
-            }
-          } catch {
-            pathLength = 2500;
-          }
-
-          gsap.set(path, {
-            strokeDasharray: pathLength,
-            strokeDashoffset: pathLength,
-          });
-
-          gsap.set(cards, {
-            opacity: 0,
-            y: 35,
-            scale: 0.95,
-          });
-
-          if (arrow) {
-            gsap.set(arrow, { fill: '#E8E5EF' });
-          }
-
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: section,
-              start: 'top top',
-              end: '+=2400',
-              scrub: 1,
-              pin: true,
-              pinSpacing: true,
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-            },
-          });
-
-          tl.to(
-            path,
+        if (progress && container) {
+          gsap.fromTo(
+            progress,
+            { scaleY: 0 },
             {
-              strokeDashoffset: 0,
+              scaleY: 1,
+              transformOrigin: 'top center',
               ease: 'none',
-              duration: 1,
-            },
-            0
-          );
-
-          cards.forEach((card, index) => {
-            const stepPos = index / (cards.length - 0.7);
-
-            tl.to(
-              card,
-              {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                duration: 0.18,
-                ease: 'power2.out',
-                onStart: () => {
-                  card.classList.add('is-active');
-                },
-                onReverseComplete: () => {
-                  card.classList.remove('is-active');
-                },
+              scrollTrigger: {
+                trigger: container,
+                start: 'top 75%',
+                end: 'bottom 80%',
+                scrub: 0.5,
               },
-              stepPos
-            );
-
-            if (dots[index]) {
-              tl.to(
-                dots[index],
-                {
-                  backgroundColor: '#20542D',
-                  borderColor: '#4D357F',
-                  scale: 1.25,
-                  duration: 0.14,
-                },
-                stepPos
-              );
             }
-          });
-
-          if (arrow) {
-            tl.to(
-              arrow,
-              {
-                fill: '#20542D',
-                duration: 0.15,
-              },
-              0.88
-            );
-          }
+          );
         }
+
+        cards.forEach((card, index) => {
+          gsap.fromTo(
+            card,
+            {
+              opacity: 0,
+              y: 35,
+              scale: 0.95,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.55,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: card,
+                start: 'top 85%',
+                onEnter: () => {
+                  card.classList.add('is-active');
+                  if (dots[index]) dots[index].classList.add('is-active');
+                },
+                onLeaveBack: () => {
+                  card.classList.remove('is-active');
+                  if (dots[index]) dots[index].classList.remove('is-active');
+                },
+              },
+            }
+          );
+        });
       }
     }, section);
 
@@ -317,9 +270,13 @@ export function ProcessSection() {
     <section
       id="process"
       ref={sectionRef}
-      className="roadmap-journey-section w-full py-16 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 border-b border-[#E8E5EF]"
+      className="roadmap-journey-section relative overflow-hidden w-full py-14 sm:py-20 md:py-24 px-4 sm:px-6 md:px-8 border-b border-[#E8E5EF]"
     >
-      <div className="w-full max-w-7xl mx-auto flex flex-col h-full justify-between">
+      {/* Centered Ambient Background Glow Accents */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#4D357F]/5 rounded-full blur-[130px] pointer-events-none -z-0" />
+      <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#20542D]/4 rounded-full blur-[120px] pointer-events-none -z-0" />
+
+      <div className="w-full max-w-7xl mx-auto flex flex-col h-full justify-between relative z-10">
         
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-8 lg:mb-12">
@@ -454,86 +411,54 @@ export function ProcessSection() {
         {/* ========================================================================= */}
         {/* MOBILE / TABLET TIMELINE STAGE (< 1024px) */}
         {/* ========================================================================= */}
-        <div className="block lg:hidden relative w-full mt-4 max-w-lg mx-auto">
-          
-          {/* Vertical SVG Road Track */}
-          <div className="absolute left-6 top-6 bottom-6 w-8 pointer-events-none z-0">
-            <svg
-              className="w-full h-full overflow-visible"
-              viewBox="0 0 32 1000"
-              preserveAspectRatio="none"
-            >
-              {/* Base Road */}
-              <line
-                x1="16"
-                y1="10"
-                x2="16"
-                y2="970"
-                stroke="#E8E5EF"
-                strokeWidth="4"
-                strokeLinecap="round"
-              />
-              {/* Progress Road */}
-              <path
-                ref={mobilePathRef}
-                d="M 16,10 L 16,970"
-                fill="none"
-                stroke="#20542D"
-                strokeWidth="5"
-                strokeLinecap="round"
-              />
-              {/* Arrowhead */}
-              <polygon
-                ref={mobileArrowRef}
-                points="8,970 16,990 24,970"
-                fill="#E8E5EF"
-                className="transition-colors duration-300"
-              />
-            </svg>
+        <div
+          ref={mobileContainerRef}
+          className="block lg:hidden relative w-full mt-6 max-w-md mx-auto px-3 sm:px-4"
+        >
+          {/* Centered Vertical Road Track */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-4 bottom-8 w-1 pointer-events-none z-0">
+            {/* Base Road Track */}
+            <div className="w-full h-full bg-[#E8E5EF] rounded-full" />
+            {/* Progress Road Track */}
+            <div
+              ref={mobileProgressRef}
+              className="absolute top-0 left-0 w-full h-full bg-[#20542D] rounded-full origin-top"
+              style={{ transform: 'scaleY(0)' }}
+            />
           </div>
 
-          {/* Vertical Stacked Step Cards */}
-          <div className="flex flex-col gap-6 relative z-10 pl-14">
+          {/* Vertical Stacked Step Cards - Centered */}
+          <div className="flex flex-col gap-6 relative z-10">
             {steps.map((step) => {
               const Icon = step.icon;
 
               return (
                 <div
                   key={step.id}
-                  className="roadmap-card-mobile roadmap-card relative group"
+                  className="roadmap-card-mobile roadmap-card relative group w-full text-center bg-white/95 backdrop-blur-md p-5 sm:p-6 rounded-2xl border border-[#E8E5EF] shadow-md hover:border-[#20542D] transition-all"
                 >
-                  {/* Step Road Connector Dot */}
-                  <div
-                    style={{
-                      position: 'absolute',
-                      left: '-39px',
-                      top: '26px',
-                    }}
-                    className="roadmap-dot-mobile roadmap-dot z-20 shadow-xs"
-                  />
-
-                  {/* Card Header */}
-                  <div className="flex items-center justify-between gap-2 mb-2">
-                    <span className="text-xs font-bold text-[#4D357F] tracking-wider uppercase">
-                      {step.label}
-                    </span>
-                    <div className="w-8 h-8 rounded-xl bg-[#F8F7F5] border border-[#E8E5EF] flex items-center justify-center group-hover:bg-[#20542D] group-hover:text-white transition-colors duration-300">
-                      <Icon className="w-4 h-4 text-[#4D357F] group-hover:text-white transition-colors" />
-                    </div>
+                  {/* Step Road Connector Badge */}
+                  <div className="roadmap-dot-mobile mx-auto w-10 h-10 rounded-xl bg-white border-2 border-[#4D357F] text-[#4D357F] font-bold text-xs flex items-center justify-center shadow-md mb-3 group-hover:bg-[#20542D] group-hover:border-[#20542D] group-hover:text-white transition-all">
+                    <Icon className="w-4 h-4" />
                   </div>
 
+                  {/* Step Label */}
+                  <span className="text-xs font-bold text-[#4D357F] tracking-wider uppercase block mb-1">
+                    {step.label}
+                  </span>
+
                   {/* Title */}
-                  <h3 className="text-base font-bold text-[#080B14] leading-snug tracking-tight group-hover:text-[#4D357F] transition-colors mb-1">
+                  <h3 className="text-base sm:text-lg font-bold text-[#080B14] leading-snug tracking-tight group-hover:text-[#4D357F] transition-colors mb-1.5">
                     {step.title}
                   </h3>
 
                   {/* Subtitle / Description */}
-                  <p className="text-xs text-[#5F636B] leading-relaxed mb-3">
+                  <p className="text-xs sm:text-sm text-[#5F636B] leading-relaxed max-w-xs mx-auto mb-3">
                     {step.desc}
                   </p>
 
                   {/* Chip / Tagline */}
-                  <div className="pt-2 border-t border-[#E8E5EF] flex items-center justify-between text-xs font-semibold text-[#20542D]">
+                  <div className="pt-2 border-t border-[#E8E5EF] flex items-center justify-center gap-1.5 text-xs font-semibold text-[#20542D]">
                     <span>{step.chip}</span>
                     <ArrowRight className="w-3.5 h-3.5 opacity-60 group-hover:translate-x-1 group-hover:opacity-100 transition-all" />
                   </div>

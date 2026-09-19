@@ -56,7 +56,7 @@ export default function OurMissionSection({ onGetStarted }: OurMissionSectionPro
   return (
     <section
       id="our-mission"
-      className="relative overflow-hidden bg-[#F8F7F5] px-4 py-[80px] md:py-[110px] text-[#080B14] sm:px-6 lg:px-8"
+      className="relative overflow-hidden bg-[#F8F7F5] px-4 py-12 sm:py-16 md:py-[110px] text-[#080B14] sm:px-6 lg:px-8"
     >
       {/* Background Subtle GLSL Grey Mesh Wave */}
       <div className="glsl-wave-wrap pointer-events-none absolute inset-x-0 bottom-0 z-0 h-[65%] opacity-[0.18] overflow-hidden">

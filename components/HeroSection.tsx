@@ -48,7 +48,7 @@ export function HeroSection({ onOpenContact }: HeroSectionProps) {
   return (
     <section
       id="hero"
-      className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 md:px-10 lg:px-12 bg-[#FFFFFF] overflow-hidden"
+      className="relative pt-20 sm:pt-32 pb-8 sm:pb-20 px-4 sm:px-6 md:px-10 lg:px-12 bg-[#FFFFFF] overflow-hidden"
     >
       {/* Background Subtle Ambient Accents (Purple only #4D357F) */}
       <div className="absolute top-12 right-1/4 w-[500px] h-[500px] bg-[#4D357F]/8 rounded-full blur-3xl pointer-events-none -z-10" />
@@ -148,19 +148,19 @@ export function HeroSection({ onOpenContact }: HeroSectionProps) {
           </div>
 
           {/* Right-Side Vector Image & Rotating Thin Circular Patterns */}
-          <div className="lg:col-span-5 relative flex items-center justify-center mt-6 lg:mt-0">
+          <div className="lg:col-span-5 relative flex items-center justify-center mt-2 lg:mt-0">
             
             {/* Thin Concentric Circular Line Patterns (Rotating slowly) */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
               {/* Outer circle */}
               <motion.div
-                className="w-[360px] sm:w-[460px] lg:w-[500px] h-[360px] sm:h-[460px] lg:h-[500px] rounded-full border border-dashed border-[#4D357F]/25"
+                className="w-[260px] sm:w-[440px] lg:w-[500px] h-[260px] sm:h-[440px] lg:h-[500px] rounded-full border border-dashed border-[#4D357F]/25"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
               />
               {/* Middle circle with purple accent points */}
               <motion.div
-                className="absolute w-[280px] sm:w-[360px] lg:w-[390px] h-[280px] sm:h-[360px] lg:h-[390px] rounded-full border border-[#4D357F]/30"
+                className="absolute w-[210px] sm:w-[350px] lg:w-[390px] h-[210px] sm:h-[350px] lg:h-[390px] rounded-full border border-[#4D357F]/30"
                 animate={{ rotate: -360 }}
                 transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
               >
@@ -168,7 +168,7 @@ export function HeroSection({ onOpenContact }: HeroSectionProps) {
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rounded-full bg-[#080B14]" />
               </motion.div>
               {/* Inner subtle circle */}
-              <div className="absolute w-[200px] sm:w-[260px] lg:w-[280px] h-[200px] sm:h-[260px] lg:h-[280px] rounded-full border border-[#E8E5EF]" />
+              <div className="absolute w-[160px] sm:w-[250px] lg:w-[280px] h-[160px] sm:h-[250px] lg:h-[280px] rounded-full border border-[#E8E5EF]" />
             </div>
 
             {/* Provided Right-Side Vector Image with Subtle Floating Animation */}
@@ -176,7 +176,7 @@ export function HeroSection({ onOpenContact }: HeroSectionProps) {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[340px] sm:max-w-[420px] lg:max-w-[460px] aspect-square flex items-center justify-center"
+              className="relative w-full max-w-[260px] sm:max-w-[400px] lg:max-w-[460px] aspect-[4/3] sm:aspect-square flex items-center justify-center"
             >
               <motion.div
                 animate={{ y: [-8, 8, -8] }}
@@ -190,7 +190,7 @@ export function HeroSection({ onOpenContact }: HeroSectionProps) {
                   priority
                   referrerPolicy="no-referrer"
                   className="object-contain drop-shadow-xl"
-                  sizes="(max-width: 640px) 320px, (max-width: 1024px) 420px, 460px"
+                  sizes="(max-width: 640px) 260px, (max-width: 1024px) 400px, 460px"
                 />
               </motion.div>
             </motion.div>
@@ -205,7 +205,7 @@ export function HeroSection({ onOpenContact }: HeroSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="hero-bottom-box mt-14 sm:mt-20 p-6 sm:p-8 md:p-10 rounded-3xl bg-white border border-[#E8E5EF] shadow-sm shadow-[#080B14]/4"
+          className="hero-bottom-box mt-6 sm:mt-16 p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl bg-white border border-[#E8E5EF] shadow-sm shadow-[#080B14]/4"
         >
           {/* 4 Connected Items Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 relative">
