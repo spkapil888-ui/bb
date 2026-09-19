@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'motion/react';
 import { Sparkles, Layers, Cpu, TrendingUp, Palette, ArrowRight } from 'lucide-react';
 
 interface ServicesSectionProps {
@@ -69,65 +68,17 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
   return (
     <section
       id="services"
-      className="what-we-do-section select-none relative overflow-hidden py-24 sm:py-32"
+      className="what-we-do-section footer-theme-bg select-none relative overflow-hidden py-24 sm:py-32"
     >
-      {/* 1. Night Sky Background Gradient */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background: 'linear-gradient(180deg, #050814 0%, #080B14 50%, #050814 100%)',
-        }}
-      />
-
-      {/* 2. Night Sky Subtle Starry Dot Matrix */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-25"
-        style={{
-          backgroundImage:
-            'radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px)',
-          backgroundSize: '32px 32px',
-        }}
-      />
-
-      {/* 3. Subtle Purple & Green Ambient Cosmic Glow Motion */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-0">
-        <motion.div
-          animate={{
-            x: ['-5%', '10%', '-5%'],
-            y: ['-10%', '8%', '-10%'],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute top-1/4 -left-20 w-[550px] h-[550px] rounded-full bg-[#4D357F]/24 blur-[130px]"
-        />
-        <motion.div
-          animate={{
-            x: ['5%', '-10%', '5%'],
-            y: ['10%', '-8%', '10%'],
-            scale: [1, 1.15, 1],
-          }}
-          transition={{
-            duration: 24,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute bottom-10 -right-20 w-[550px] h-[550px] rounded-full bg-[#20542D]/22 blur-[140px]"
-        />
-      </div>
-
       {/* Header Area */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mb-12 sm:mb-16 relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-[#4D357F]/40 text-[#FFFFFF] text-xs font-semibold uppercase tracking-wider mb-4 backdrop-blur-md">
+            <div className="badge section-label inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-[#4D357F]/40 text-[#FFFFFF] text-xs font-semibold uppercase tracking-wider mb-4 backdrop-blur-md">
               <Sparkles className="w-3.5 h-3.5 text-[#4D357F]" />
               Core Capabilities
             </div>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#FFFFFF]">
+            <h2 className="display-text text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#FFFFFF]">
               What<span className="text-[#4D357F]">—</span>We Do
             </h2>
           </div>
@@ -139,11 +90,13 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
       </div>
 
       {/* Infinite Smooth Carousel Track */}
-      <div className="what-we-do-wrapper relative z-10 w-full overflow-hidden">
-        {/* Subtle Edge Fade Masks for Smooth In/Out */}
-        <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-[#050814] to-transparent z-20 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-[#050814] to-transparent z-20 pointer-events-none" />
-
+      <div
+        className="what-we-do-wrapper relative z-10 w-full overflow-hidden"
+        style={{
+          maskImage: 'linear-gradient(to right, transparent, black 32px, black calc(100% - 32px), transparent)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent, black 32px, black calc(100% - 32px), transparent)',
+        }}
+      >
         <div className="what-we-do-loop flex">
           {duplicatedServices.map((service, index) => {
             const Icon = service.icon;

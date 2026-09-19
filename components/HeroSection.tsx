@@ -88,7 +88,7 @@ export function HeroSection({ onOpenContact }: HeroSectionProps) {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-[#F8F7F5] border border-[#E8E5EF] mb-6 shadow-sm"
+              className="badge section-label inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-[#F8F7F5] border border-[#E8E5EF] mb-6 shadow-sm"
             >
               {/* Circular Abstract Brand Symbol with subtle concentric rings */}
               <div className="relative w-6 h-6 flex items-center justify-center">
@@ -96,7 +96,7 @@ export function HeroSection({ onOpenContact }: HeroSectionProps) {
                 <div className="absolute inset-[-3px] rounded-full border border-[#4D357F]/20" />
                 <div className="w-3.5 h-3.5 rounded-full bg-[#4D357F]" />
               </div>
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#080B14]">
+              <span className="badge text-xs font-semibold uppercase tracking-wider text-[#080B14]">
                 Buzz N Beyond Innovations
               </span>
               <span className="w-1.5 h-1.5 rounded-full bg-[#4D357F]" />
@@ -108,7 +108,7 @@ export function HeroSection({ onOpenContact }: HeroSectionProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="hero-heading text-left uppercase w-full"
+              className="hero-heading display-text text-left uppercase w-full"
             >
               <span className="block text-[#4D357F] text-3xl sm:text-5xl md:text-6xl lg:text-[70px] xl:text-[80px] font-extrabold leading-[0.95] tracking-[-0.04em] whitespace-nowrap">
                 IDEAS DESERVE TO

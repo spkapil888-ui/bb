@@ -1,45 +1,16 @@
 @import "tailwindcss";
-@import url("https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,700&family=Google+Sans+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&display=swap");
-
-@font-face {
-  font-family: 'Google Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/googlesans/v70/4Ua_rENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iqcsih3SAyH6cAwhX9RFD48TE63OOYKtrwEIKli.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Google Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/googlesans/v70/4Ua_rENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iqcsih3SAyH6cAwhX9RFD48TE63OOYKtrw2IKli.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Google Sans';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/googlesans/v70/4Ua_rENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iqcsih3SAyH6cAwhX9RFD48TE63OOYKtrzaJ6li.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'Google Sans';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('https://fonts.gstatic.com/s/googlesans/v70/4Ua_rENHsxJlGDuGo1OIlJfC6l_24rlCK1Yo_Iqcsih3SAyH6cAwhX9RFD48TE63OOYKtrzjJ6li.ttf') format('truetype');
-}
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@300;400;500;600;700;800&display=swap");
 
 @theme {
-  --font-sans: 'Google Sans', 'Google Sans Text', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'Google Sans', 'Google Sans Text', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: "Sora", sans-serif;
+  --font-body: "Manrope", sans-serif;
+  --font-sans: "Manrope", sans-serif;
 }
 
 @layer base {
   :root {
+    --font-heading: "Sora", sans-serif;
+    --font-body: "Manrope", sans-serif;
     --primary-purple: #4D357F;
     --deep-navy: #080B14;
     --btn-green: #20542D;
@@ -56,25 +27,89 @@
     scroll-behavior: smooth;
     background-color: var(--soft-bg);
     color: var(--text-dark);
-    font-family: 'Google Sans', 'Google Sans Text', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    font-family: var(--font-body);
   }
 
   body {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
+    font-family: var(--font-body);
   }
 
-  *,
-  *::before,
-  *::after,
-  button,
+  /* Headings, hero title, section titles, badges, big display text */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .section-label,
+  .badge,
+  .display-text {
+    font-family: var(--font-heading);
+  }
+
+  /* Body text, paragraphs, navbar, buttons, cards, footer */
+  p,
+  span,
+  li,
   input,
   optgroup,
   select,
-  textarea {
-    font-family: 'Google Sans', 'Google Sans Text', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  textarea,
+  nav,
+  .navbar,
+  header,
+  button,
+  .btn-primary,
+  .btn-secondary,
+  .site-button,
+  .package-button,
+  .wp-block-button__link,
+  .what-card,
+  .roadmap-card,
+  .package-card,
+  .footer,
+  .footer-link,
+  .copyright-bar {
+    font-family: var(--font-body);
   }
+
+  /* Headings inside cards retain font-heading */
+  .what-card h2,
+  .what-card h3,
+  .what-card h4,
+  .roadmap-card h2,
+  .roadmap-card h3,
+  .roadmap-card h4,
+  .package-card h2,
+  .package-card h3,
+  .package-card h4,
+  .package-title {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Typography utility classes */
+.font-heading {
+  font-family: var(--font-heading) !important;
+}
+
+.font-body {
+  font-family: var(--font-body) !important;
+}
+
+.section-label {
+  font-family: var(--font-heading);
+}
+
+.badge {
+  font-family: var(--font-heading);
+}
+
+.display-text {
+  font-family: var(--font-heading);
 }
 
 /* Custom Scrollbar */
@@ -312,7 +347,6 @@
 /* What—We Do / Core Capabilities Section Styles */
 .what-we-do-section {
   position: relative;
-  background: #080B14;
   color: #FFFFFF;
   overflow: hidden;
   display: flex;
@@ -693,6 +727,7 @@
 }
 
 .package-badge {
+  font-family: var(--font-heading);
   background: #20542D;
   color: #FFFFFF;
   border-radius: 999px;
@@ -736,8 +771,11 @@
   box-shadow: 0 18px 45px rgba(32, 84, 45, 0.22);
 }
 
-/* Footer Gradient Color & Glow */
-.footer {
+/* Footer & Dark Section Signature Cosmic Theme Background */
+.footer,
+.footer-theme-bg,
+.what-we-do-section,
+.why-choose-us-section {
   position: relative;
   overflow: hidden;
   background:
@@ -746,12 +784,24 @@
     radial-gradient(circle at 50% 100%, rgba(77, 53, 127, 0.42) 0%, transparent 42%),
     linear-gradient(135deg, #080B14 0%, #100B24 42%, #080B14 72%, #06120D 100%);
   color: #ffffff;
+}
+
+.footer {
   border: 1px solid rgba(77, 53, 127, 0.45);
   border-radius: 34px;
 }
 
+.what-we-do-section,
+.why-choose-us-section {
+  border-top: 1px solid rgba(77, 53, 127, 0.4);
+  border-bottom: 1px solid rgba(77, 53, 127, 0.4);
+}
+
 /* soft moving glow */
-.footer::before {
+.footer::before,
+.footer-theme-bg::before,
+.what-we-do-section::before,
+.why-choose-us-section::before {
   content: "";
   position: absolute;
   inset: -30%;
@@ -767,7 +817,10 @@
 }
 
 /* bottom neon wave */
-.footer::after {
+.footer::after,
+.footer-theme-bg::after,
+.what-we-do-section::after,
+.why-choose-us-section::after {
   content: "";
   position: absolute;
   left: -10%;
@@ -784,7 +837,10 @@
   z-index: 0;
 }
 
-.footer > * {
+.footer > *,
+.footer-theme-bg > *,
+.what-we-do-section > *,
+.why-choose-us-section > * {
   position: relative;
   z-index: 1;
 }

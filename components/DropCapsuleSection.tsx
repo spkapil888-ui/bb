@@ -422,7 +422,7 @@ export function DropCapsuleSection() {
       className="technology-ecosystem touch-pan-y"
     >
       <div className="tech-heading-wrap">
-        <h2>
+        <h2 className="display-text">
           Creative.<span>Ideas</span> Intelligent <span>Technology</span> Real Growth.
         </h2>
         <p>

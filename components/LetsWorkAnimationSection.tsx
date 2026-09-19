@@ -99,7 +99,7 @@ export function LetsWorkAnimationSection() {
       >
         <h2
           ref={textRef}
-          className="lets-work-text pointer-events-auto"
+          className="lets-work-text display-text pointer-events-auto"
         >
           LET’S WORK
         </h2>

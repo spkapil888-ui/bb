@@ -90,7 +90,7 @@ export function ContactModal({ isOpen, onClose, initialService }: ContactModalPr
 
             {!submitted ? (
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#4D357F]/8 border border-[#4D357F]/20 text-[#4D357F] text-xs font-semibold uppercase tracking-wider mb-3">
+                <div className="badge section-label inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#4D357F]/8 border border-[#4D357F]/20 text-[#4D357F] text-xs font-semibold uppercase tracking-wider mb-3">
                   <Sparkles className="w-3.5 h-3.5 text-[#4D357F]" />
                   Let’s Talk
                 </div>

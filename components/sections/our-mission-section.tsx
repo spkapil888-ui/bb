@@ -70,7 +70,7 @@ export default function OurMissionSection({ onGetStarted }: OurMissionSectionPro
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-          className="our-mission-heading mx-auto max-w-4xl text-[2rem] sm:text-[2.5rem] lg:text-[3rem] font-bold leading-[1.05] tracking-[-0.04em] text-[#080B14]"
+          className="our-mission-heading display-text mx-auto max-w-4xl text-[2rem] sm:text-[2.5rem] lg:text-[3rem] font-bold leading-[1.05] tracking-[-0.04em] text-[#080B14]"
         >
           Think Beyond,{" "}
           <span className="text-[#4D357F]">Build Beyond</span>

@@ -323,12 +323,12 @@ export function ProcessSection() {
         
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-8 lg:mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#4D357F]/8 border border-[#4D357F]/20 text-[#4D357F] text-xs font-semibold uppercase tracking-wider mb-3">
+          <div className="badge section-label inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#4D357F]/8 border border-[#4D357F]/20 text-[#4D357F] text-xs font-semibold uppercase tracking-wider mb-3">
             <Sparkles className="w-3.5 h-3.5 text-[#4D357F]" />
             Roadmap &amp; Journey
           </div>
 
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#080B14] max-w-3xl">
+          <h2 className="display-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#080B14] max-w-3xl">
             <CharReveal text="A Clear Process from Idea to Growth" />
           </h2>
           <p className="mt-3 text-sm sm:text-base md:text-lg text-[#5F636B] max-w-2xl">

@@ -160,11 +160,11 @@ export function GLSLHills({
       mesh.rotation.x = -Math.PI * 0.38;
       scene.add(mesh);
 
-      const clock = new THREE.Clock();
+      const startTime = performance.now();
 
       const render = () => {
         if (!renderer) return;
-        uniforms.uTime.value = clock.getElapsedTime();
+        uniforms.uTime.value = (performance.now() - startTime) / 1000;
         renderer.render(scene, camera);
         animId = requestAnimationFrame(render);
       };

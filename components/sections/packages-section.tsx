@@ -114,7 +114,7 @@ export function PackagesSection({ onSelectPackage }: PackagesSectionProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F4F0FA] border border-[#E8E5EF] text-[#4D357F] text-xs font-semibold uppercase tracking-wider mb-4 shadow-xs"
+            className="badge section-label inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F4F0FA] border border-[#E8E5EF] text-[#4D357F] text-xs font-semibold uppercase tracking-wider mb-4 shadow-xs"
           >
             <Sparkles className="w-3.5 h-3.5 text-[#4D357F]" />
             Packages
@@ -126,7 +126,7 @@ export function PackagesSection({ onSelectPackage }: PackagesSectionProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#080B14] max-w-3xl"
+            className="display-text text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#080B14] max-w-3xl"
           >
             <CharReveal text="Choose the Right Growth Package" />
           </motion.h2>
@@ -165,7 +165,7 @@ export function PackagesSection({ onSelectPackage }: PackagesSectionProps) {
                 {/* Popular Badge */}
                 {isPopular && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20">
-                    <span className="package-badge inline-flex items-center gap-1.5 shadow-sm">
+                    <span className="package-badge badge inline-flex items-center gap-1.5 shadow-sm">
                       <Sparkles className="w-3 h-3 text-white" />
                       Most Popular
                     </span>

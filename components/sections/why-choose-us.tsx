@@ -71,68 +71,8 @@ export function WhyChooseUsSection() {
   return (
     <section
       id="why-us"
-      className="relative overflow-hidden py-24 sm:py-32 md:py-36 px-4 sm:px-6 md:px-12 text-[#FFFFFF] select-none"
-      style={{
-        background: 'linear-gradient(180deg, #050814 0%, #080B14 50%, #050814 100%)',
-      }}
+      className="why-choose-us-section footer-theme-bg relative overflow-hidden py-24 sm:py-32 md:py-36 px-4 sm:px-6 md:px-12 text-[#FFFFFF] select-none"
     >
-      {/* 1. Subtle Night-Sky Starry Matrix Grid Pattern */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-25"
-        style={{
-          backgroundImage:
-            'radial-gradient(rgba(255, 255, 255, 0.35) 1px, transparent 1px)',
-          backgroundSize: '32px 32px',
-        }}
-      />
-
-      {/* 2. Cinematic Moving Radial Gradient Glow Blobs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-0">
-        {/* Purple Glow Blob (Left to Center) */}
-        <motion.div
-          animate={{
-            x: ['-10%', '15%', '-5%', '-10%'],
-            y: ['-15%', '10%', '20%', '-15%'],
-            scale: [1, 1.15, 0.95, 1],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute -top-24 -left-24 w-[520px] h-[520px] rounded-full bg-[#4D357F]/26 blur-[130px]"
-        />
-
-        {/* Green Glow Blob (Right to Bottom) */}
-        <motion.div
-          animate={{
-            x: ['10%', '-15%', '5%', '10%'],
-            y: ['15%', '-10%', '-20%', '15%'],
-            scale: [1, 0.9, 1.1, 1],
-          }}
-          transition={{
-            duration: 22,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute -bottom-24 -right-24 w-[540px] h-[540px] rounded-full bg-[#20542D]/24 blur-[140px]"
-        />
-
-        {/* Center Ambient Atmosphere */}
-        <motion.div
-          animate={{
-            opacity: [0.15, 0.28, 0.15],
-            scale: [0.95, 1.1, 0.95],
-          }}
-          transition={{
-            duration: 14,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[450px] rounded-full bg-[#4D357F]/18 blur-[150px]"
-        />
-      </div>
-
       <div className="relative z-10 w-full max-w-6xl mx-auto">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16 sm:mb-20">
@@ -141,7 +81,7 @@ export function WhyChooseUsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.06] border border-[#4D357F]/40 text-[#FFFFFF] text-xs font-semibold uppercase tracking-wider mb-5 backdrop-blur-md shadow-xs shadow-[#4D357F]/20"
+            className="badge section-label inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.06] border border-[#4D357F]/40 text-[#FFFFFF] text-xs font-semibold uppercase tracking-wider mb-5 backdrop-blur-md shadow-xs shadow-[#4D357F]/20"
           >
             <Sparkles className="w-3.5 h-3.5 text-[#4D357F]" />
             Why Choose Us
@@ -152,7 +92,7 @@ export function WhyChooseUsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#FFFFFF] max-w-3xl"
+            className="display-text text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#FFFFFF] max-w-3xl"
           >
             <CharReveal text="Why choose us" />
           </motion.h2>

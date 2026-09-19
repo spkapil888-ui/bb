@@ -59,7 +59,7 @@ export function AboutSection({ onGetStarted }: AboutSectionProps) {
             className="lg:col-span-7 flex flex-col items-start"
           >
             {/* Section Tag */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#4D357F]/8 border border-[#4D357F]/20 text-[#4D357F] text-xs font-semibold uppercase tracking-wider mb-6">
+            <div className="section-label badge inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#4D357F]/8 border border-[#4D357F]/20 text-[#4D357F] text-xs font-semibold uppercase tracking-wider mb-6">
               <Sparkles className="w-3.5 h-3.5 text-[#4D357F]" />
               About Us
             </div>
