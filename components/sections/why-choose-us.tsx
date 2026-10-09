@@ -10,7 +10,6 @@ import {
   Layers,
   BarChart3,
   ArrowUpRight,
-  ShieldCheck,
 } from 'lucide-react';
 import { CharReveal } from '../CharReveal';
 
@@ -129,64 +128,42 @@ export function WhyChooseUsSection() {
                   y: -6,
                   transition: { duration: 0.25, ease: 'easeOut' },
                 }}
-                className={`group relative p-7 sm:p-8 rounded-[28px] bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] flex flex-col justify-between transition-all duration-300 ${
+                className={`group relative p-7 sm:p-8 rounded-[28px] bg-white/[0.04] backdrop-blur-xl border border-white/[0.08] flex flex-col transition-all duration-300 ${
                   isGreen
                     ? 'hover:border-[#20542D] hover:bg-white/[0.07] hover:shadow-[0_20px_50px_rgba(32,84,45,0.22)]'
                     : 'hover:border-[#4D357F] hover:bg-white/[0.07] hover:shadow-[0_20px_50px_rgba(77,53,127,0.22)]'
                 }`}
               >
-                <div>
-                  {/* Top Bar: Icon Box & Indicator Dot */}
-                  <div className="flex items-center justify-between mb-6">
-                    <div
-                      className={`w-12 h-12 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center transition-all duration-300 group-hover:scale-105 ${
-                        isGreen
-                          ? 'group-hover:bg-[#20542D] group-hover:border-[#20542D]'
-                          : 'group-hover:bg-[#4D357F] group-hover:border-[#4D357F]'
-                      }`}
-                    >
-                      <Icon className="w-5 h-5 text-white transition-transform duration-300 group-hover:scale-110" />
-                    </div>
-
-                    <div
-                      className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                        isGreen
-                          ? 'bg-[#20542D] group-hover:shadow-[0_0_10px_#20542D] group-hover:scale-125'
-                          : 'bg-[#4D357F] group-hover:shadow-[0_0_10px_#4D357F] group-hover:scale-125'
-                      }`}
-                    />
-                  </div>
-
-                  {/* Card Title */}
-                  <h3 className="text-xl font-bold tracking-tight text-white transition-colors duration-300">
-                    {card.title}
-                  </h3>
-
-                  {/* Card Description */}
-                  <p className="mt-2.5 text-sm sm:text-[15px] text-white/72 leading-relaxed">
-                    {card.description}
-                  </p>
-                </div>
-
-                {/* Bottom Caption & Line */}
-                <div className="mt-8 pt-4 border-t border-white/[0.08] group-hover:border-white/20 transition-colors flex items-center justify-between">
-                  <div className="flex items-center gap-1.5 text-[11px] font-semibold tracking-wider uppercase text-white/60 group-hover:text-white/90 transition-colors">
-                    <ShieldCheck
-                      className={`w-3.5 h-3.5 ${
-                        isGreen ? 'text-[#20542D]' : 'text-[#4D357F]'
-                      }`}
-                    />
-                    <span>Guaranteed Agency Standard</span>
+                {/* Top Bar: Icon Box & Indicator Dot */}
+                <div className="flex items-center justify-between mb-6">
+                  <div
+                    className={`w-12 h-12 rounded-2xl bg-white/[0.06] border border-white/10 flex items-center justify-center transition-all duration-300 group-hover:scale-105 ${
+                      isGreen
+                        ? 'group-hover:bg-[#20542D] group-hover:border-[#20542D]'
+                        : 'group-hover:bg-[#4D357F] group-hover:border-[#4D357F]'
+                    }`}
+                  >
+                    <Icon className="w-5 h-5 text-white transition-transform duration-300 group-hover:scale-110" />
                   </div>
 
                   <div
-                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                       isGreen
-                        ? 'bg-[#20542D] group-hover:scale-125'
-                        : 'bg-[#4D357F] group-hover:scale-125'
+                        ? 'bg-[#20542D] group-hover:shadow-[0_0_10px_#20542D] group-hover:scale-125'
+                        : 'bg-[#4D357F] group-hover:shadow-[0_0_10px_#4D357F] group-hover:scale-125'
                     }`}
                   />
                 </div>
+
+                {/* Card Title */}
+                <h3 className="text-xl font-bold tracking-tight text-white transition-colors duration-300">
+                  {card.title}
+                </h3>
+
+                {/* Card Description */}
+                <p className="mt-2.5 text-sm sm:text-[15px] text-white/72 leading-relaxed">
+                  {card.description}
+                </p>
               </motion.div>
             );
           })}
