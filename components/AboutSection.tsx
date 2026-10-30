@@ -25,7 +25,7 @@ export function AboutSection({ onGetStarted }: AboutSectionProps) {
   const highlights = [
     { title: 'Brand Distinction', desc: 'Crafting unforgettable identities' },
     { title: 'AI Automation', desc: 'Accelerating next-gen workflows' },
-    { title: 'Full Performance', desc: 'Conversion-driven digital growth' },
+    { title: 'Performance Growth', desc: 'Conversion-driven digital growth' },
   ];
 
   const orbitNodesOuter = [

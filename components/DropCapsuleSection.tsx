@@ -423,7 +423,7 @@ export function DropCapsuleSection() {
     >
       <div className="tech-heading-wrap">
         <h2 className="display-text">
-          Creative.<span>Ideas</span> Intelligent <span>Technology</span> Real Growth.
+          Creative.<span>Ideas</span> Intelligent.<span>Technology</span> Real Growth.
         </h2>
         <p>
           We bring strategy, creativity, content, technology and AI together to help ambitious brands stand out, connect with their audience and grow with purpose.

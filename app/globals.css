@@ -902,6 +902,17 @@
   }
 }
 
+/* Footer Navigation & Connect Headings */
+.footer h4,
+.footer h4.text-xs.uppercase.tracking-widest,
+h4.text-xs.uppercase.tracking-widest {
+  font-family: 'Manrope', sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 17px !important;
+  text-transform: capitalize !important;
+  letter-spacing: normal !important;
+}
+
 .footer p {
   color: rgba(255, 255, 255, 0.68);
 }
