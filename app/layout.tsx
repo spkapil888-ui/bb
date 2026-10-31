@@ -1,19 +1,19 @@
 import type { Metadata } from 'next';
-import { Sora, Manrope } from 'next/font/google';
+import localFont from 'next/font/local';
 import './globals.css';
 
-const sora = Sora({
-  subsets: ['latin'],
+const sora = localFont({
+  src: './fonts/sora-variable.woff2',
   variable: '--font-heading',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: '100 800',
 });
 
-const manrope = Manrope({
-  subsets: ['latin'],
+const manrope = localFont({
+  src: './fonts/manrope-variable.woff2',
   variable: '--font-body',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: '200 800',
 });
 
 export const metadata: Metadata = {
@@ -47,10 +47,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${sora.variable} ${manrope.variable}`}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
       <body className="bg-[#F8F7F5] text-[#080B14] antialiased selection:bg-[#4D357F] selection:text-white" suppressHydrationWarning>
         {children}
       </body>
