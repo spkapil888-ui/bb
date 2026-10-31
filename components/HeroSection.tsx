@@ -3,7 +3,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'motion/react';
-import bannerImg from '@/assets/img/banner-img.png';
 import {
   ArrowRight,
   Compass,
@@ -11,6 +10,11 @@ import {
   Cpu,
   TrendingUp,
   Sparkles,
+  Palette,
+  Code2,
+  Megaphone,
+  Layout,
+  Zap,
 } from 'lucide-react';
 
 interface HeroSectionProps {
@@ -18,6 +22,23 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ onOpenContact }: HeroSectionProps) {
+  // Outer orbit nodes: Radius = 195px, 5 nodes evenly spaced at 72° increments
+  const orbitNodesOuter = [
+    { icon: Layout, label: 'UI / UX', color: '#4D357F', x: 0, y: -195 },
+    { icon: Megaphone, label: 'Marketing', color: '#20542D', x: 185, y: -60 },
+    { icon: Sparkles, label: 'Creative', color: '#4D357F', x: 115, y: 158 },
+    { icon: Palette, label: 'Branding', color: '#080B14', x: -115, y: 158 },
+    { icon: Zap, label: 'Scalability', color: '#20542D', x: -185, y: -60 },
+  ];
+
+  // Inner orbit nodes: Radius = 125px, 4 nodes evenly spaced at 90° increments
+  const orbitNodesInner = [
+    { icon: Cpu, label: 'AI & Auto', color: '#4D357F', x: 0, y: -125 },
+    { icon: Code2, label: 'Web & Dev', color: '#20542D', x: 125, y: 0 },
+    { icon: TrendingUp, label: 'Growth', color: '#20542D', x: 0, y: 125 },
+    { icon: Compass, label: 'Strategy', color: '#080B14', x: -125, y: 0 },
+  ];
+
   const connectedItems = [
     {
       title: 'STRATEGY',
@@ -108,7 +129,7 @@ export function HeroSection({ onOpenContact }: HeroSectionProps) {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="hero-heading display-text text-left uppercase w-full"
+              className="hero-heading display-text text-left uppercase w-full font-['Sora']"
             >
               <span className="block text-[#4D357F] text-3xl sm:text-5xl md:text-6xl lg:text-[70px] xl:text-[80px] font-extrabold leading-[0.95] tracking-[-0.04em] whitespace-nowrap">
                 IDEAS DESERVE TO
@@ -147,55 +168,106 @@ export function HeroSection({ onOpenContact }: HeroSectionProps) {
             </motion.div>
           </div>
 
-          {/* Right-Side Vector Image & Rotating Thin Circular Patterns */}
-          <div className="lg:col-span-5 relative flex items-center justify-center mt-2 lg:mt-0">
-            
-            {/* Thin Concentric Circular Line Patterns (Rotating slowly) */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
-              {/* Outer circle */}
-              <motion.div
-                className="w-[260px] sm:w-[440px] lg:w-[500px] h-[260px] sm:h-[440px] lg:h-[500px] rounded-full border border-dashed border-[#4D357F]/25"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-              />
-              {/* Middle circle with purple accent points */}
-              <motion.div
-                className="absolute w-[210px] sm:w-[350px] lg:w-[390px] h-[210px] sm:h-[350px] lg:h-[390px] rounded-full border border-[#4D357F]/30"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
-              >
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#4D357F]" />
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rounded-full bg-[#080B14]" />
-              </motion.div>
-              {/* Inner subtle circle */}
-              <div className="absolute w-[160px] sm:w-[250px] lg:w-[280px] h-[160px] sm:h-[250px] lg:h-[280px] rounded-full border border-[#E8E5EF]" />
-            </div>
-
-            {/* Provided Right-Side Vector Image with Subtle Floating Animation */}
+          {/* Right-Side Motion Graphic: Brand Gyroscope Orbit Animation with Logo & Service Nodes */}
+          <div className="lg:col-span-5 relative flex items-center justify-center mt-6 lg:mt-0">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[260px] sm:max-w-[400px] lg:max-w-[460px] aspect-[4/3] sm:aspect-square flex items-center justify-center"
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-[340px] xs:w-[380px] sm:w-[440px] md:w-[480px] h-[340px] xs:h-[380px] sm:h-[440px] md:h-[480px] flex items-center justify-center scale-[0.82] xs:scale-[0.9] sm:scale-100 origin-center select-none"
             >
+              {/* Soft Ambient Background Glow */}
+              <div className="absolute w-72 h-72 rounded-full bg-gradient-to-tr from-[#4D357F]/8 via-[#20542D]/5 to-transparent blur-2xl pointer-events-none -z-10" />
+
+              {/* Outer Orbit Track (Dashed Hairline) */}
+              <div className="absolute w-[390px] h-[390px] rounded-full border border-dashed border-[#4D357F]/25 pointer-events-none" />
+
+              {/* Outer Orbit Rotating Ring with Service Nodes (Counter-Clockwise Spin) */}
+              <div className="absolute w-[390px] h-[390px] rounded-full animate-[spin_44s_linear_infinite_reverse] flex items-center justify-center pointer-events-auto">
+                {orbitNodesOuter.map((node) => {
+                  const Icon = node.icon;
+
+                  return (
+                    <div
+                      key={node.label}
+                      style={{
+                        transform: `translate(${node.x}px, ${node.y}px)`,
+                      }}
+                      className="absolute group flex items-center justify-center cursor-pointer"
+                    >
+                      {/* Counter-rotating node to keep icon & text upright */}
+                      <div className="animate-[spin_44s_linear_infinite] flex flex-col items-center">
+                        <div
+                          style={{ backgroundColor: node.color }}
+                          className="w-9 h-9 rounded-xl text-white flex items-center justify-center shadow-md shadow-[#080B14]/12 border border-white/50 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
+                        >
+                          <Icon className="w-4 h-4" />
+                        </div>
+                        <span className="mt-1 px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase bg-white/95 text-[#080B14] shadow-xs border border-[#E8E5EF] whitespace-nowrap transition-colors group-hover:border-[#4D357F]/40">
+                          {node.label}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Inner Orbit Track (Solid Fine Hairline) */}
+              <div className="absolute w-[250px] h-[250px] rounded-full border border-[#20542D]/25 pointer-events-none" />
+
+              {/* Inner Orbit Rotating Ring with Service Nodes (Clockwise Spin) */}
+              <div className="absolute w-[250px] h-[250px] rounded-full animate-[spin_32s_linear_infinite] flex items-center justify-center pointer-events-auto">
+                {orbitNodesInner.map((node) => {
+                  const Icon = node.icon;
+
+                  return (
+                    <div
+                      key={node.label}
+                      style={{
+                        transform: `translate(${node.x}px, ${node.y}px)`,
+                      }}
+                      className="absolute group flex items-center justify-center cursor-pointer"
+                    >
+                      {/* Counter-rotating node to keep icon & text upright */}
+                      <div className="animate-[spin_32s_linear_infinite_reverse] flex flex-col items-center">
+                        <div
+                          style={{ backgroundColor: node.color }}
+                          className="w-8 h-8 rounded-lg text-white flex items-center justify-center shadow-md shadow-[#080B14]/12 border border-white/50 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg"
+                        >
+                          <Icon className="w-3.5 h-3.5" />
+                        </div>
+                        <span className="mt-1 px-1.5 py-0.5 rounded text-[9px] font-semibold uppercase bg-white/95 text-[#080B14] shadow-xs border border-[#E8E5EF] whitespace-nowrap transition-colors group-hover:border-[#4D357F]/40">
+                          {node.label}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Concentric Halo Guide Line (Clean hairline, no blur) */}
+              <div className="absolute w-[148px] h-[148px] rounded-full border border-[#4D357F]/15 pointer-events-none" />
+
+              {/* Center Official Brand Logo Card */}
               <motion.div
-                animate={{ y: [-8, 8, -8] }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-                className="relative w-full h-full"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.25 }}
+                className="relative z-20 w-24 sm:w-26 h-24 sm:h-26 rounded-2xl sm:rounded-3xl bg-white border border-[#E8E5EF] shadow-xl shadow-[#4D357F]/12 p-3 flex flex-col items-center justify-center group cursor-pointer"
               >
-                <Image
-                  src={bannerImg}
-                  alt="Buzz N Beyond Banner Image"
-                  fill
-                  priority
-                  referrerPolicy="no-referrer"
-                  className="object-contain drop-shadow-xl"
-                  sizes="(max-width: 640px) 260px, (max-width: 1024px) 400px, 460px"
-                />
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <Image
+                    src="https://dev.buzznbeyond.com/wp-content/uploads/2025/03/Untitled-design-9-e1784613727472.png"
+                    alt="Buzz N Beyond Innovations Logo"
+                    fill
+                    className="object-contain p-1"
+                    referrerPolicy="no-referrer"
+                    sizes="(max-width: 640px) 96px, 104px"
+                  />
+                </div>
               </motion.div>
             </motion.div>
-
           </div>
+
         </div>
 
         {/* Bottom Connected Section: Clean Minimal Rounded Container with Green #20542D Hover Glow */}

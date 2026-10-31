@@ -497,10 +497,9 @@
 /* Technology Ecosystem Section Styles */
 .technology-ecosystem {
   position: relative;
-  background: #F8F7F5;
+  background: #FAFAFC;
   color: #080B14;
-  min-height: 110vh;
-  padding: 120px 0 0;
+  padding: 100px 0 110px;
   overflow: hidden;
   pointer-events: auto;
 }
@@ -515,6 +514,7 @@
 }
 
 .tech-heading-wrap h2 {
+  font-family: 'Sora', var(--font-heading), sans-serif !important;
   font-size: clamp(28px, 3.8vw, 48px);
   line-height: 1.15;
   letter-spacing: -0.03em;
@@ -609,7 +609,7 @@
 @media (max-width: 768px) {
   .technology-ecosystem {
     min-height: auto;
-    padding: 40px 0 0;
+    padding: 50px 0 60px;
   }
 
   .tech-heading-wrap h2 {
@@ -935,6 +935,17 @@ h4.text-xs.uppercase.tracking-widest {
 .footer .copyright-bar {
   color: rgba(255, 255, 255, 0.52);
   border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Process Heading & CharReveal inside headings */
+#process-heading,
+#process-heading *,
+.process-heading,
+.process-heading *,
+h1 .char-reveal *,
+h2 .char-reveal *,
+h3 .char-reveal * {
+  font-family: 'Sora', sans-serif !important;
 }
 
 /* Reduced motion respect */

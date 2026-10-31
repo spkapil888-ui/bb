@@ -79,7 +79,7 @@ export function ServicesSection({ onSelectService }: ServicesSectionProps) {
               <Sparkles className="w-3.5 h-3.5 text-[#4D357F]" />
               Core Capabilities
             </div>
-            <h2 className="display-text text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#FFFFFF]">
+            <h2 className="display-text text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#FFFFFF] font-['Sora']">
               What<span className="text-[#4D357F]">—</span>We Create
             </h2>
           </div>

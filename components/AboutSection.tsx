@@ -3,18 +3,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'motion/react';
-import {
-  ArrowUpRight,
-  Sparkles,
-  Palette,
-  Code2,
-  Cpu,
-  TrendingUp,
-  Megaphone,
-  Compass,
-  Layers,
-  Zap,
-} from 'lucide-react';
+import bannerImg from '@/assets/img/banner-img.png';
+import { ArrowUpRight, Sparkles } from 'lucide-react';
 import { CharReveal } from './CharReveal';
 
 interface AboutSectionProps {
@@ -28,29 +18,15 @@ export function AboutSection({ onGetStarted }: AboutSectionProps) {
     { title: 'Performance Growth', desc: 'Conversion-driven digital growth' },
   ];
 
-  const orbitNodesOuter = [
-    { icon: Palette, label: 'Design', color: '#4D357F', x: 150, y: 0 },
-    { icon: Code2, label: 'Tech', color: '#20542D', x: 46, y: 143 },
-    { icon: Cpu, label: 'AI', color: '#4D357F', x: -121, y: 88 },
-    { icon: TrendingUp, label: 'Growth', color: '#20542D', x: -121, y: -88 },
-    { icon: Megaphone, label: 'Marketing', color: '#4D357F', x: 46, y: -143 },
-  ];
-
-  const orbitNodesInner = [
-    { icon: Compass, label: 'Strategy', color: '#080B14', x: 87, y: 50 },
-    { icon: Sparkles, label: 'Creative', color: '#4D357F', x: -87, y: 50 },
-    { icon: Layers, label: 'Branding', color: '#20542D', x: 0, y: -100 },
-  ];
-
   return (
     <section
       id="about"
       className="relative py-12 sm:py-24 md:py-32 px-4 sm:px-6 md:px-12 bg-white overflow-hidden border-y border-[#E8E5EF]/60"
     >
       <div className="w-full max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
-          {/* Left Column: Text & Content */}
+          {/* Left Column (Desktop): Text & Content */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -65,7 +41,7 @@ export function AboutSection({ onGetStarted }: AboutSectionProps) {
             </div>
 
             {/* Heading */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#080B14] leading-[1.15]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#080B14] leading-[1.15] font-['Sora']">
               <CharReveal text="Buzz N Beyond Innovations" className="text-[#4D357F]" />
             </h2>
 
@@ -100,101 +76,55 @@ export function AboutSection({ onGetStarted }: AboutSectionProps) {
             </div>
           </motion.div>
 
-          {/* Right Column: Abstract Brand Visual / Animated Gyro with Logo & Service Icons */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, margin: '-10%' }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 flex items-center justify-center relative"
-          >
-            <div className="relative w-80 sm:w-96 h-80 sm:h-96 flex items-center justify-center">
-              
-              {/* Glowing Background Blur */}
-              <div className="absolute inset-0 rounded-full bg-[#4D357F]/12 blur-3xl pointer-events-none" />
-
-              {/* Outer Orbit Ring with Service Icons (360deg spin) */}
-              <div className="absolute inset-0 rounded-full border border-dashed border-[#4D357F]/25 animate-[spin_32s_linear_infinite] flex items-center justify-center">
-                {orbitNodesOuter.map((node) => {
-                  const Icon = node.icon;
-
-                  return (
-                    <div
-                      key={node.label}
-                      style={{
-                        transform: `translate(${node.x}px, ${node.y}px)`,
-                      }}
-                      className="absolute group flex items-center justify-center"
-                    >
-                      {/* Counter-rotating icon so it stays upright */}
-                      <div className="animate-[spin_32s_linear_infinite_reverse] flex flex-col items-center">
-                        <div
-                          style={{ backgroundColor: node.color }}
-                          className="w-9 h-9 rounded-xl text-white flex items-center justify-center shadow-lg shadow-[#080B14]/15 border border-white/40 transition-transform duration-300 group-hover:scale-110"
-                        >
-                          <Icon className="w-4 h-4" />
-                        </div>
-                        <span className="mt-1 px-1.5 py-0.5 rounded text-[10px] font-semibold uppercase bg-white/90 text-[#080B14] shadow-xs border border-[#E8E5EF] whitespace-nowrap">
-                          {node.label}
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Middle Gyro Ring with Inner Service Icons (Reverse spin) */}
-              <div className="absolute inset-10 rounded-full border border-[#4D357F]/30 animate-[spin_24s_linear_infinite_reverse] flex items-center justify-center">
-                {orbitNodesInner.map((node) => {
-                  const Icon = node.icon;
-
-                  return (
-                    <div
-                      key={node.label}
-                      style={{
-                        transform: `translate(${node.x}px, ${node.y}px)`,
-                      }}
-                      className="absolute group flex items-center justify-center"
-                    >
-                      <div className="animate-[spin_24s_linear_infinite] flex flex-col items-center">
-                        <div
-                          style={{ backgroundColor: node.color }}
-                          className="w-8 h-8 rounded-lg text-white flex items-center justify-center shadow-md border border-white/40 transition-transform duration-300 group-hover:scale-110"
-                        >
-                          <Icon className="w-3.5 h-3.5" />
-                        </div>
-                        <span className="mt-1 px-1.5 py-0.5 rounded text-[9px] font-semibold uppercase bg-white/90 text-[#080B14] shadow-xs border border-[#E8E5EF] whitespace-nowrap">
-                          {node.label}
-                        </span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Inner Decorative Ring */}
-              <div className="absolute inset-20 rounded-full border border-[#E8E5EF] bg-white/70 backdrop-blur-md shadow-inner" />
-
-              {/* Center Official Logo Card */}
+          {/* Right Column (Desktop): Vector Banner Image with Rotating Thin Circular Patterns */}
+          <div className="lg:col-span-5 relative flex items-center justify-center mt-6 lg:mt-0">
+            
+            {/* Thin Concentric Circular Line Patterns (Rotating slowly) */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
+              {/* Outer circle */}
               <motion.div
-                whileHover={{ scale: 1.06 }}
-                transition={{ duration: 0.3 }}
-                className="relative z-10 w-28 sm:w-32 h-28 sm:h-32 rounded-3xl bg-white border border-[#E8E5EF] shadow-xl shadow-[#4D357F]/15 p-3 flex flex-col items-center justify-center group"
+                className="w-[260px] sm:w-[420px] lg:w-[480px] h-[260px] sm:h-[420px] lg:h-[480px] rounded-full border border-dashed border-[#4D357F]/25"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+              />
+              {/* Middle circle with purple accent points */}
+              <motion.div
+                className="absolute w-[210px] sm:w-[330px] lg:w-[380px] h-[210px] sm:h-[330px] lg:h-[380px] rounded-full border border-[#4D357F]/30"
+                animate={{ rotate: -360 }}
+                transition={{ duration: 45, repeat: Infinity, ease: 'linear' }}
               >
-                <div className="relative w-full h-full flex items-center justify-center">
-                  <Image
-                    src="https://dev.buzznbeyond.com/wp-content/uploads/2025/03/Untitled-design-9-e1784613727472.png"
-                    alt="Buzz N Beyond Innovations Logo"
-                    fill
-                    className="object-contain p-1.5"
-                    referrerPolicy="no-referrer"
-                    sizes="(max-width: 640px) 112px, 128px"
-                  />
-                </div>
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#4D357F]" />
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rounded-full bg-[#080B14]" />
               </motion.div>
-
+              {/* Inner subtle circle */}
+              <div className="absolute w-[160px] sm:w-[240px] lg:w-[270px] h-[160px] sm:h-[240px] lg:h-[270px] rounded-full border border-[#E8E5EF]" />
             </div>
-          </motion.div>
+
+            {/* Provided Vector Image with Subtle Floating Animation */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: '-10%' }}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="relative w-full max-w-[260px] sm:max-w-[380px] lg:max-w-[440px] aspect-[4/3] sm:aspect-square flex items-center justify-center"
+            >
+              <motion.div
+                animate={{ y: [-8, 8, -8] }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                className="relative w-full h-full"
+              >
+                <Image
+                  src={bannerImg}
+                  alt="Buzz N Beyond Innovations Visual"
+                  fill
+                  referrerPolicy="no-referrer"
+                  className="object-contain drop-shadow-xl"
+                  sizes="(max-width: 640px) 260px, (max-width: 1024px) 380px, 440px"
+                />
+              </motion.div>
+            </motion.div>
+
+          </div>
 
         </div>
       </div>

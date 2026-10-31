@@ -29,7 +29,7 @@ export function CharReveal({
   const Tag = tag as any;
 
   return (
-    <Tag id={id} ref={containerRef} className={`char-reveal inline-block ${className}`}>
+    <Tag id={id} ref={containerRef} className={`char-reveal inline-block ${className}`} style={{ fontFamily: 'inherit' }}>
       {words.map((word, wordIndex) => {
         let globalCharOffset = 0;
         for (let i = 0; i < wordIndex; i++) {
@@ -37,7 +37,7 @@ export function CharReveal({
         }
 
         return (
-          <span key={wordIndex} className="inline-block whitespace-nowrap mr-[0.28em]">
+          <span key={wordIndex} className="inline-block whitespace-nowrap mr-[0.28em]" style={{ fontFamily: 'inherit' }}>
             {word.split('').map((char, charIndex) => {
               const charTotalIndex = globalCharOffset + charIndex;
               return (
@@ -55,6 +55,7 @@ export function CharReveal({
                     ease: [0.215, 0.61, 0.355, 1],
                   }}
                   className={`inline-block ${charClassName}`}
+                  style={{ fontFamily: 'inherit' }}
                 >
                   {char}
                 </motion.span>

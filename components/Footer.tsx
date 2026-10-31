@@ -15,9 +15,8 @@ export function Footer({ onOpenContact, onOpenLegal }: FooterProps) {
   };
 
   const socials = [
-    { name: 'Facebook', href: 'https://facebook.com' },
-    { name: 'Instagram', href: 'https://instagram.com' },
-    { name: 'LinkedIn', href: 'https://linkedin.com' },
+    { name: 'Instagram', href: 'https://www.instagram.com/buzz_n_beyond_innovations/' },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/company/buzz-beyond-innovations/' },
   ];
 
   const quickLinks = [

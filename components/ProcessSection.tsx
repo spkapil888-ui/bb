@@ -289,8 +289,16 @@ export function ProcessSection() {
             Roadmap &amp; Journey
           </div>
 
-          <h2 className="display-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#080B14] max-w-3xl">
-            <CharReveal text="A Clear Process from Idea to Growth" />
+          <h2
+            id="process-heading"
+            style={{ fontFamily: "'Sora', sans-serif" }}
+            className="process-heading display-text text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[#080B14] max-w-3xl !font-['Sora']"
+          >
+            <CharReveal
+              text="A Clear Process from Idea to Growth"
+              className="!font-['Sora']"
+              charClassName="!font-['Sora']"
+            />
           </h2>
           <p className="mt-3 text-sm sm:text-base md:text-lg text-[#5F636B] max-w-2xl">
             A connected journey that moves from discovery to strategy, design, validation, build, launch and measurable growth.

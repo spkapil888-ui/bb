@@ -3,14 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import Matter from 'matter-js';
 
-interface CapsuleItem {
-  id: string;
-  name: string;
-  className: string;
-  imgSrc: string;
-}
-
-const CAPSULES_DATA: CapsuleItem[] = [
+const CAPSULES_DATA = [
   {
     id: 'adobe',
     name: 'Adobe',
@@ -115,13 +108,7 @@ export function DropCapsuleSection() {
     let techEngine: Matter.Engine | null = null;
     let techAnimationFrame: number | null = null;
     let resizeTimer: NodeJS.Timeout | null = null;
-
-    interface CapsuleBody extends Matter.Body {
-      el?: HTMLElement;
-    }
-
-    const bodies: CapsuleBody[] = [];
-
+    const bodies: (Matter.Body & { el?: HTMLElement })[] = [];
     let windowListenersCleanup: (() => void) | null = null;
 
     const cleanupPhysics = () => {
@@ -149,7 +136,6 @@ export function DropCapsuleSection() {
     const triggerDrop = () => {
       const stage = stageRef.current;
       if (!stage || !bodies.length) return;
-
       const width = stage.clientWidth || 1000;
       const isMobile = window.innerWidth < 768;
       const columns = isMobile ? 3 : 5;
@@ -159,14 +145,12 @@ export function DropCapsuleSection() {
         Matter.Body.setStatic(body, false);
         const startX = 70 + (index % columns) * colWidth + (Math.random() - 0.5) * 30;
         const startY = -120 - index * 60;
-
         Matter.Body.setPosition(body, { x: startX, y: startY });
         Matter.Body.setVelocity(body, {
           x: (Math.random() - 0.5) * 2,
           y: 3.5 + Math.random() * 3,
         });
         Matter.Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.08);
-
         const startAngle = index % 3 === 0 ? -0.28 : index % 4 === 0 ? 0.24 : 0;
         Matter.Body.setAngle(body, startAngle);
       });
@@ -174,7 +158,6 @@ export function DropCapsuleSection() {
 
     const initTechnologyCapsules = () => {
       if (techInitialized) return;
-
       const stage = stageRef.current;
       if (!stage) return;
 
@@ -182,7 +165,6 @@ export function DropCapsuleSection() {
       if (!capsuleEls.length) return;
 
       techInitialized = true;
-
       const { Engine, World, Bodies, Body, Runner } = Matter;
 
       techEngine = Engine.create({
@@ -192,8 +174,8 @@ export function DropCapsuleSection() {
 
       const width = stage.clientWidth || 1000;
       const height = stage.clientHeight || 520;
-
       const wallThickness = 140;
+
       const floor = Bodies.rectangle(width / 2, height + wallThickness / 2 - 6, width * 2.5, wallThickness, {
         isStatic: true,
         friction: 0.8,
@@ -218,16 +200,15 @@ export function DropCapsuleSection() {
 
       capsuleEls.forEach((el, index) => {
         const isVertical = el.classList.contains('vertical');
-        const defaultW = isVertical ? (isMobile ? 44 : 90) : (isMobile ? 98 : 210);
-        const defaultH = isVertical ? (isMobile ? 108 : 230) : (isMobile ? 44 : 94);
-
+        const defaultW = isVertical ? (isMobile ? 44 : 90) : isMobile ? 98 : 210;
+        const defaultH = isVertical ? (isMobile ? 108 : 230) : isMobile ? 44 : 94;
         const w = el.offsetWidth > 20 ? el.offsetWidth : defaultW;
         const h = el.offsetHeight > 20 ? el.offsetHeight : defaultH;
 
         const startX = (isMobile ? 30 : 70) + (index % columns) * colWidth + (Math.random() - 0.5) * 15;
         const startY = -80 - index * (isMobile ? 40 : 60);
 
-        const body: CapsuleBody = Bodies.rectangle(startX, startY, w, h, {
+        const body: Matter.Body & { el?: HTMLElement } = Bodies.rectangle(startX, startY, w, h, {
           chamfer: { radius: Math.min(w, h) / 2 },
           restitution: 0.35,
           friction: 0.75,
@@ -239,7 +220,6 @@ export function DropCapsuleSection() {
           x: (Math.random() - 0.5) * 2,
           y: 3.5 + Math.random() * 3,
         });
-
         Body.setAngularVelocity(body, (Math.random() - 0.5) * 0.08);
 
         const startAngle = index % 3 === 0 ? -0.28 : index % 4 === 0 ? 0.24 : 0;
@@ -252,7 +232,7 @@ export function DropCapsuleSection() {
       World.add(world, bodies);
 
       // Smooth custom Drag & Throw system
-      let draggedBody: CapsuleBody | null = null;
+      let draggedBody: (Matter.Body & { el?: HTMLElement }) | null = null;
       let dragOffset = { x: 0, y: 0 };
       const previousPositions: { x: number; y: number; time: number }[] = [];
 
@@ -264,7 +244,7 @@ export function DropCapsuleSection() {
         };
       };
 
-      const startDrag = (body: CapsuleBody, clientX: number, clientY: number) => {
+      const startDrag = (body: Matter.Body & { el?: HTMLElement }, clientX: number, clientY: number) => {
         draggedBody = body;
         const pos = getStagePos(clientX, clientY);
         dragOffset = {
@@ -274,8 +254,13 @@ export function DropCapsuleSection() {
         Body.setStatic(body, false);
         Body.setVelocity(body, { x: 0, y: 0 });
         Body.setAngularVelocity(body, 0);
+
         previousPositions.length = 0;
-        previousPositions.push({ x: body.position.x, y: body.position.y, time: performance.now() });
+        previousPositions.push({
+          x: body.position.x,
+          y: body.position.y,
+          time: performance.now(),
+        });
       };
 
       const onPointerMove = (e: MouseEvent | TouchEvent) => {
@@ -296,14 +281,12 @@ export function DropCapsuleSection() {
 
       const onPointerUp = () => {
         if (!draggedBody) return;
-
         if (previousPositions.length >= 2) {
           const last = previousPositions[previousPositions.length - 1];
           const first = previousPositions[0];
           const dt = Math.max(16, last.time - first.time);
           const vx = ((last.x - first.x) / dt) * 16;
           const vy = ((last.y - first.y) / dt) * 16;
-
           const maxVelocity = 28;
           const clampedVx = Math.max(-maxVelocity, Math.min(maxVelocity, vx));
           const clampedVy = Math.max(-maxVelocity, Math.min(maxVelocity, vy));
@@ -311,7 +294,6 @@ export function DropCapsuleSection() {
           Body.setVelocity(draggedBody, { x: clampedVx, y: clampedVy });
           Body.setAngularVelocity(draggedBody, clampedVx * 0.015);
         }
-
         draggedBody = null;
         previousPositions.length = 0;
       };
@@ -361,7 +343,6 @@ export function DropCapsuleSection() {
           el.style.transform = `translate3d(${posX}px, ${posY}px, 0) rotate(${body.angle}rad)`;
           el.style.opacity = '1';
         });
-
         techAnimationFrame = requestAnimationFrame(syncCapsules);
       };
 
@@ -391,7 +372,6 @@ export function DropCapsuleSection() {
         },
         { threshold: 0.15 }
       );
-
       techObserver.observe(techSection);
     }
 
@@ -422,7 +402,7 @@ export function DropCapsuleSection() {
       className="technology-ecosystem touch-pan-y"
     >
       <div className="tech-heading-wrap">
-        <h2 className="display-text">
+        <h2 className="display-text font-['Sora']">
           Creative.<span>Ideas</span> Intelligent.<span>Technology</span> Real Growth.
         </h2>
         <p>
